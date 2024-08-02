@@ -14,17 +14,18 @@ class AuthEnterNamePage extends StatelessWidget {
       padding: const EdgeInsets.symmetric(horizontal: 20),
       child: Column(
         children: [
-          const SizedBox(
-            height: 32,
-          ),
-          const AuthDescriptionWidget(
-            text: "Для точных результатов нам необходимо знать ваше имя"
-          ),
-          const SizedBox(
-            height: 32,
-          ),
-          TextField(
-            decoration: InputDecoration(
+        const SizedBox(
+        height: 32,
+      ),
+      const AuthDescriptionWidget(
+          text: "Для точных результатов нам необходимо знать ваше имя"
+      ),
+      const SizedBox(
+        height: 32,
+      ),
+      TextField(
+          style:const TextStyle(color: Colors.white),
+          decoration: InputDecoration(
               enabledBorder: OutlineInputBorder(
                 borderSide: BorderSide(color: AppColors.white.withOpacity(0.15)),
                 borderRadius: BorderRadius.circular(16),
@@ -38,10 +39,11 @@ class AuthEnterNamePage extends StatelessWidget {
               fillColor: AppColors.darkPurple,
               hintText: "Введите своё имя",
               hintStyle: AppFonts.f20w600.copyWith(color: AppColors.white.withOpacity(0.4)),
-            ),
-          )
-        ],
-      ),
+    ),)
+    ]
+    ,
+    )
+    ,
     );
   }
 }

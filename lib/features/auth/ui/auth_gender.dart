@@ -46,7 +46,9 @@ class _AuthGenderPageState extends State<AuthGenderPage> {
                 height: size.width * 0.381,
                 fit: BoxFit.fitHeight,
               ),
-              const SizedBox(width: 18,),
+              const SizedBox(
+                width: 18,
+              ),
               SelectBoxWidget(
                 text: "Мужчина",
                 width: size.width - size.width * 0.437 - 40 - 18,
@@ -57,7 +59,9 @@ class _AuthGenderPageState extends State<AuthGenderPage> {
               ),
             ],
           ),
-          const SizedBox(height: 32,),
+          const SizedBox(
+            height: 32,
+          ),
           Row(
             children: [
               Image.asset(
@@ -65,7 +69,9 @@ class _AuthGenderPageState extends State<AuthGenderPage> {
                 width: size.width * 0.437,
                 height: size.width * 0.381,
               ),
-              const SizedBox(width: 18,),
+              const SizedBox(
+                width: 18,
+              ),
               SelectBoxWidget(
                 text: "Женщина",
                 width: size.width - size.width * 0.437 - 40 - 18,
@@ -81,4 +87,3 @@ class _AuthGenderPageState extends State<AuthGenderPage> {
     );
   }
 }
-
