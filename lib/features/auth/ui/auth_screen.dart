@@ -40,7 +40,7 @@ class _AuthScreenState extends State<AuthScreen> {
     }
     currentPageIndex -= 1;
     _pageController.animateTo(MediaQuery.of(context).size.width * currentPageIndex,
-        duration: new Duration(milliseconds: 300), curve: Curves.easeIn);
+        duration: const Duration(milliseconds: 300), curve: Curves.easeIn);
     setState(() {});
   }
 
