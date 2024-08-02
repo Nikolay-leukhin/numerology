@@ -28,20 +28,20 @@ class _AuthBirthdayPageState extends State<AuthBirthdayPage> {
           const SizedBox(
             height: 16,
           ),
-          const AuthDescriptionWidget(text: "Для точных результатов нам необходимо знать ваше имя"),
+          const AuthDescriptionWidget(
+              text: "Для точных результатов нам необходимо знать ваше имя"),
           Spacer(
             flex: 1,
           ),
-
           Container(
             width: 336,
             height: size.height * 0.28,
-            constraints: const BoxConstraints(
-              maxHeight: 256
-            ),
+            constraints: const BoxConstraints(maxHeight: 256),
             child: CupertinoTheme(
                 data: CupertinoThemeData(
-                  textTheme: CupertinoTextThemeData(pickerTextStyle: AppFonts.f23w400.copyWith(color: AppColors.white)),
+                  textTheme: CupertinoTextThemeData(
+                      pickerTextStyle:
+                          AppFonts.f23w400.copyWith(color: AppColors.white)),
                 ),
                 child: CupertinoDatePicker(
                   backgroundColor: Colors.transparent,
@@ -56,7 +56,6 @@ class _AuthBirthdayPageState extends State<AuthBirthdayPage> {
           Spacer(
             flex: 2,
           ),
-
         ],
       ),
     );
