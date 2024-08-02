@@ -72,7 +72,7 @@ class _AuthScreenState extends State<AuthScreen> {
           ),
           body: PageView(scrollDirection: Axis.horizontal, children: [
             AuthEnterNamePage(),
-            AuthBirthdayPage()
+            // AuthBirthdayPage()
           ]),
           bottomNavigationBar: Padding(
             padding: const EdgeInsets.all(20),
@@ -101,30 +101,30 @@ class _AuthScreenState extends State<AuthScreen> {
 }
 
 
-
-class AuthBirthdayPage extends StatefulWidget {
-  const AuthBirthdayPage({super.key});
-
-  @override
-  State<AuthBirthdayPage> createState() => _AuthBirthdayPageState();
-}
-
-class _AuthBirthdayPageState extends State<AuthBirthdayPage> {
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      child: Column(
-        children: [
-          Image.asset('assets/images/sleep.png'),
-          const SizedBox(height: 16,),
-          const AuthDescriptionWidget(
-              text: "Для точных результатов нам необходимо знать ваше имя"
-          ),
-          CupertinoDatePicker(onDateTimeChanged: (c) => {})
-        ],
-      ),
-    );
-  }
-}
+//
+// class AuthBirthdayPage extends StatefulWidget {
+//   const AuthBirthdayPage({super.key});
+//
+//   @override
+//   State<AuthBirthdayPage> createState() => _AuthBirthdayPageState();
+// }
+//
+// class _AuthBirthdayPageState extends State<AuthBirthdayPage> {
+//   @override
+//   Widget build(BuildContext context) {
+//     return Container(
+//       child: Column(
+//         children: [
+//           Image.asset('assets/images/sleep.png'),
+//           const SizedBox(height: 16,),
+//           const AuthDescriptionWidget(
+//               text: "Для точных результатов нам необходимо знать ваше имя"
+//           ),
+//           // CupertinoDatePicker(onDateTimeChanged: (c) => {})
+//         ],
+//       ),
+//     );
+//   }
+// }
 
 
