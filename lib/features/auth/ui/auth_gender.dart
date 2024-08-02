@@ -49,6 +49,7 @@ class _AuthGenderPageState extends State<AuthGenderPage> {
               const SizedBox(width: 18,),
               SelectBoxWidget(
                 text: "Мужчина",
+                width: size.width - size.width * 0.437 - 40 - 18,
                 value: currentGender == Genders.male,
                 onClick: () {
                   selectGender(Genders.male);
@@ -67,6 +68,7 @@ class _AuthGenderPageState extends State<AuthGenderPage> {
               const SizedBox(width: 18,),
               SelectBoxWidget(
                 text: "Женщина",
+                width: size.width - size.width * 0.437 - 40 - 18,
                 value: currentGender == Genders.female,
                 onClick: () {
                   selectGender(Genders.female);
