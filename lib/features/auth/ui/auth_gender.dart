@@ -25,6 +25,8 @@ class _AuthGenderPageState extends State<AuthGenderPage> {
 
   @override
   Widget build(BuildContext context) {
+    final size = MediaQuery.sizeOf(context);
+
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 20),
       child: Column(
@@ -40,8 +42,8 @@ class _AuthGenderPageState extends State<AuthGenderPage> {
             children: [
               Image.asset(
                 "assets/images/man_${currentGender == Genders.male ? "active" : "passive"}.png",
-                width: 188,
-                height: 164,
+                width: size.width * 0.437,
+                height: size.width * 0.381,
                 fit: BoxFit.fitHeight,
               ),
               const SizedBox(width: 18,),
@@ -59,8 +61,8 @@ class _AuthGenderPageState extends State<AuthGenderPage> {
             children: [
               Image.asset(
                 "assets/images/female_${currentGender == Genders.female ? "active" : "passive"}.png",
-                width: 188,
-                height: 164,
+                width: size.width * 0.437,
+                height: size.width * 0.381,
               ),
               const SizedBox(width: 18,),
               SelectBoxWidget(

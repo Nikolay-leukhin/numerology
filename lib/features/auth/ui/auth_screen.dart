@@ -29,7 +29,18 @@ class _AuthScreenState extends State<AuthScreen> {
       return;
     }
     currentPageIndex += 1;
-    _pageController.animateTo(MediaQuery.of(context).size.width * currentPageIndex, duration: new Duration(milliseconds: 300), curve: Curves.easeIn);
+    _pageController.animateTo(MediaQuery.of(context).size.width * currentPageIndex,
+        duration: new Duration(milliseconds: 300), curve: Curves.easeIn);
+    setState(() {});
+  }
+
+  previosPage() {
+    if (currentPageIndex == 0) {
+      return;
+    }
+    currentPageIndex -= 1;
+    _pageController.animateTo(MediaQuery.of(context).size.width * currentPageIndex,
+        duration: new Duration(milliseconds: 300), curve: Curves.easeIn);
     setState(() {});
   }
 
@@ -51,13 +62,21 @@ class _AuthScreenState extends State<AuthScreen> {
                   height: 24,
                 ),
                 Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
+                    Opacity(
+                      opacity: currentPageIndex == 0 ? 0 : 1,
+                      child: IconButton(
+                        onPressed: previosPage,
+                        icon: const Icon(Icons.arrow_back, color: AppColors.white,),
+                      ),
+                    ),
                     Text(
                       titles[currentPageIndex],
                       style: AppFonts.f24w800.copyWith(color: Colors.white),
                     ),
+                   const SizedBox(height: 40, width: 40,)
                   ],
                 ),
                 const SizedBox(

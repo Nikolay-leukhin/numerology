@@ -33,7 +33,7 @@ class _AuthBirthdayPageState extends State<AuthStatusPage> {
 
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 20),
-      child: Column(
+      child: ListView(
         children: [
           Image.asset(
             'assets/images/family.png',

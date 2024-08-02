@@ -15,6 +15,7 @@ class SelectBoxWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Flexible(
+      fit: FlexFit.tight,
       child: InkWell(
         borderRadius: BorderRadius.circular(16),
         onTap: () {
