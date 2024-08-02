@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:numerology/utils/utils.dart';
 
-import 'description_text_widget.dart';
+import 'widgets/description_text_widget.dart';
 
 class AuthEnterNamePage extends StatelessWidget {
   const AuthEnterNamePage({

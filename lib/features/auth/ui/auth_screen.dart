@@ -1,7 +1,12 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
+import 'package:numerology/features/auth/ui/auth_bd_time_page.dart';
+import 'package:numerology/features/auth/ui/auth_birthday_page.dart';
+import 'package:numerology/features/auth/ui/auth_gender.dart';
 import 'package:numerology/features/auth/ui/auth_name_page.dart';
-import 'package:numerology/features/auth/ui/description_text_widget.dart';
+import 'package:numerology/features/auth/ui/auth_status.dart';
+import 'package:numerology/features/auth/ui/widgets/description_text_widget.dart';
 import 'package:numerology/utils/utils.dart';
 import 'package:numerology/widgets/buttons/filled_button.dart';
 import 'package:numerology/widgets/buttons/outline_button.dart';
@@ -15,8 +20,18 @@ class AuthScreen extends StatefulWidget {
 
 class _AuthScreenState extends State<AuthScreen> {
   List<String> titles = ["Ваше имя", "Дата рождения", "Время рождения", "Ваш пол", "Статус отношений"];
+  PageController _pageController = PageController();
 
   int currentPageIndex = 0;
+
+  nextPage() {
+    if (currentPageIndex == 4) {
+      return;
+    }
+    currentPageIndex += 1;
+    _pageController.animateTo(MediaQuery.of(context).size.width * currentPageIndex, duration: new Duration(milliseconds: 300), curve: Curves.easeIn);
+    setState(() {});
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -70,10 +85,11 @@ class _AuthScreenState extends State<AuthScreen> {
               ],
             ),
           ),
-          body: PageView(scrollDirection: Axis.horizontal, children: [
-            AuthEnterNamePage(),
-            // AuthBirthdayPage()
-          ]),
+          body: PageView(
+              controller: _pageController,
+              physics: NeverScrollableScrollPhysics(),
+              scrollDirection: Axis.horizontal,
+              children: [AuthEnterNamePage(), AuthBirthdayPage(), AuthTimePage(), AuthGenderPage(), AuthStatusPage()]),
           bottomNavigationBar: Padding(
             padding: const EdgeInsets.all(20),
             child: Row(
@@ -86,7 +102,9 @@ class _AuthScreenState extends State<AuthScreen> {
                   height: 48,
                 ),
                 MyFilledButton(
-                  onTap: () {},
+                  onTap: () {
+                    nextPage();
+                  },
                   text: "Дальше",
                   width: (size.width - 40 - 12) * 0.5,
                   height: 48,
@@ -100,31 +118,4 @@ class _AuthScreenState extends State<AuthScreen> {
   }
 }
 
-
 //
-// class AuthBirthdayPage extends StatefulWidget {
-//   const AuthBirthdayPage({super.key});
-//
-//   @override
-//   State<AuthBirthdayPage> createState() => _AuthBirthdayPageState();
-// }
-//
-// class _AuthBirthdayPageState extends State<AuthBirthdayPage> {
-//   @override
-//   Widget build(BuildContext context) {
-//     return Container(
-//       child: Column(
-//         children: [
-//           Image.asset('assets/images/sleep.png'),
-//           const SizedBox(height: 16,),
-//           const AuthDescriptionWidget(
-//               text: "Для точных результатов нам необходимо знать ваше имя"
-//           ),
-//           // CupertinoDatePicker(onDateTimeChanged: (c) => {})
-//         ],
-//       ),
-//     );
-//   }
-// }
-
-
