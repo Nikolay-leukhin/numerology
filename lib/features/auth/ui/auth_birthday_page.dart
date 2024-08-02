@@ -1,5 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:numerology/features/auth/logic/auth_cubit.dart';
 import 'package:numerology/utils/utils.dart';
 
 import 'widgets/description_text_widget.dart';
@@ -30,7 +32,7 @@ class _AuthBirthdayPageState extends State<AuthBirthdayPage> {
           ),
           const AuthDescriptionWidget(
               text: "Для точных результатов нам необходимо знать ваше имя"),
-          Spacer(
+          const Spacer(
             flex: 1,
           ),
           Container(
@@ -49,11 +51,17 @@ class _AuthBirthdayPageState extends State<AuthBirthdayPage> {
                   mode: CupertinoDatePickerMode.date,
                   use24hFormat: true,
                   onDateTimeChanged: (DateTime newDate) {
-                    // setState(() => DateTime.now = newDate);
+                    context.read<AuthCubit>().dateTime = context
+                        .read<AuthCubit>()
+                        .dateTime
+                        .copyWith(
+                            day: newDate.day,
+                            year: newDate.year,
+                            month: newDate.month);
                   },
                 )),
           ),
-          Spacer(
+          const Spacer(
             flex: 2,
           ),
         ],

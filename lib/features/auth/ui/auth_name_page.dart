@@ -1,12 +1,22 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:numerology/features/auth/logic/auth_cubit.dart';
 import 'package:numerology/utils/utils.dart';
 
 import 'widgets/description_text_widget.dart';
 
-class AuthEnterNamePage extends StatelessWidget {
+class AuthEnterNamePage extends StatefulWidget {
+
   const AuthEnterNamePage({
     super.key,
   });
+
+  @override
+  State<AuthEnterNamePage> createState() => _AuthEnterNamePageState();
+}
+
+class _AuthEnterNamePageState extends State<AuthEnterNamePage> {
+  TextEditingController controller = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -24,6 +34,10 @@ class AuthEnterNamePage extends StatelessWidget {
         height: 32,
       ),
       TextField(
+          controller: controller,
+          onChanged: (text) {
+            context.read<AuthCubit>().name = text;
+          },
           style:const TextStyle(color: Colors.white),
           decoration: InputDecoration(
               enabledBorder: OutlineInputBorder(

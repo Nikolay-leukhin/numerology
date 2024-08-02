@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:numerology/features/auth/logic/auth_cubit.dart';
 import 'package:numerology/features/auth/ui/widgets/select_box.dart';
 import 'package:numerology/utils/utils.dart';
 
 import 'widgets/description_text_widget.dart';
 
-enum Genders { male, female }
 
 class AuthGenderPage extends StatefulWidget {
   const AuthGenderPage({
@@ -20,6 +21,7 @@ class _AuthGenderPageState extends State<AuthGenderPage> {
 
   selectGender(Genders gender) {
     currentGender = gender;
+    context.read<AuthCubit>().gender = currentGender;
     setState(() {});
   }
 

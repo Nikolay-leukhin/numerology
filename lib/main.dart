@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:numerology/app.dart';
+import 'package:numerology/providers.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(const MyRepositoryProvider());
 }
 

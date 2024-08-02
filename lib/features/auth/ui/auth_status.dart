@@ -1,11 +1,12 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:numerology/features/auth/logic/auth_cubit.dart';
 import 'package:numerology/features/auth/ui/widgets/select_box.dart';
 import 'package:numerology/utils/utils.dart';
 
 import 'widgets/description_text_widget.dart';
 
-enum RelationshipStatuses { lonely, married, engaged, haveSex, none }
 
 class AuthStatusPage extends StatefulWidget {
   const AuthStatusPage({super.key});
@@ -25,6 +26,7 @@ class _AuthBirthdayPageState extends State<AuthStatusPage> {
     setState(() {
       currentStatus = newStatus;
     });
+    context.read<AuthCubit>().statuses = newStatus;
   }
 
   @override

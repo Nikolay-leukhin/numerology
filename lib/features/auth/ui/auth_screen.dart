@@ -1,6 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:numerology/features/auth/logic/auth_cubit.dart';
 import 'package:numerology/features/auth/ui/auth_bd_time_page.dart';
 import 'package:numerology/features/auth/ui/auth_birthday_page.dart';
 import 'package:numerology/features/auth/ui/auth_gender.dart';
@@ -26,6 +28,7 @@ class _AuthScreenState extends State<AuthScreen> {
 
   nextPage() {
     if (currentPageIndex == 4) {
+      context.read<AuthCubit>().registerUser();
       return;
     }
     currentPageIndex += 1;

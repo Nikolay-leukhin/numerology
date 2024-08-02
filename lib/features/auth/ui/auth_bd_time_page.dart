@@ -1,5 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:numerology/features/auth/logic/auth_cubit.dart';
 import 'package:numerology/utils/utils.dart';
 
 import 'widgets/description_text_widget.dart';
@@ -28,7 +30,9 @@ class _AuthBirthdayPageState extends State<AuthTimePage> {
           const SizedBox(
             height: 16,
           ),
-          const AuthDescriptionWidget(text: "Время важно для определения ваших домов, восходящего знака и точного положения Луны."),
+          const AuthDescriptionWidget(
+              text:
+                  "Время важно для определения ваших домов, восходящего знака и точного положения Луны."),
           Spacer(
             flex: 1,
           ),
@@ -38,7 +42,9 @@ class _AuthBirthdayPageState extends State<AuthTimePage> {
             constraints: const BoxConstraints(maxHeight: 256),
             child: CupertinoTheme(
                 data: CupertinoThemeData(
-                  textTheme: CupertinoTextThemeData(pickerTextStyle: AppFonts.f23w400.copyWith(color: AppColors.white)),
+                  textTheme: CupertinoTextThemeData(
+                      pickerTextStyle:
+                          AppFonts.f23w400.copyWith(color: AppColors.white)),
                 ),
                 child: CupertinoDatePicker(
                   backgroundColor: Colors.transparent,
@@ -46,7 +52,10 @@ class _AuthBirthdayPageState extends State<AuthTimePage> {
                   mode: CupertinoDatePickerMode.time,
                   use24hFormat: false,
                   onDateTimeChanged: (DateTime newDate) {
-                    // setState(() => DateTime.now = newDate);
+                    context.read<AuthCubit>().dateTime = context
+                        .read<AuthCubit>()
+                        .dateTime
+                        .copyWith(hour: newDate.hour, minute: newDate.minute);
                   },
                 )),
           ),
