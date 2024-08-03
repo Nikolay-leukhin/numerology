@@ -4,6 +4,8 @@ import 'package:numerology/utils/fonts.dart';
 import 'package:numerology/widgets/containers/blue_gradient_container.dart';
 import 'package:websafe_svg/websafe_svg.dart';
 
+import '../../../widgets/buttons/gradient_button.dart';
+
 class ProfileScreen extends StatefulWidget {
   const ProfileScreen({super.key});
 
@@ -48,14 +50,14 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       Text(
                         'Александр',
                         style:
-                            AppFonts.f24w700.copyWith(color: AppColors.white),
+                            AppFonts.f20w700.copyWith(color: AppColors.white),
                       ),
                       Row(
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
                           Text(
                             'Мужчина',
-                            style: AppFonts.f14w500
+                            style: AppFonts.f12w500
                                 .copyWith(color: AppColors.lightGrey),
                           ),
                           const SizedBox(
@@ -70,7 +72,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           ),
                           Text(
                             '31.08.2004',
-                            style: AppFonts.f14w500
+                            style: AppFonts.f12w500
                                 .copyWith(color: AppColors.lightGrey),
                           ),
                         ],
@@ -81,6 +83,36 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 ],
               )
             ],
+          )),
+          const SizedBox(
+            height: 16,
+          ),
+          BlueGradientContainer(
+              child: Column(
+            children: [
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  WebsafeSvg.asset('svg/active_subscription.svg'),
+                  Text(
+                    'Доступ к полной версии',
+                    style: AppFonts.f20w700,
+                  )
+                ],
+              ),
+              const SizedBox(
+                height: 16,
+              ),
+              GradientButton(
+                onTap: () {},
+                text: 'Оформить подписку',
+                height: 56,
+              ),
+            ],
+          )),
+          BlueGradientContainer(
+              child: Column(
+            children: [],
           ))
         ],
       ),
