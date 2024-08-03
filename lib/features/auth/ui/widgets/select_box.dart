@@ -24,7 +24,7 @@ class SelectBoxWidget extends StatelessWidget {
         padding: const EdgeInsets.all(16),
         decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(16),
-            gradient: value ? AppGradients.blueToPurple : null,
+            gradient: value ? AppGradients.purpleToBlue : null,
             color: value ? null : AppColors.dark,
             border: Border.all(width: !value ? 1 : 0, color: AppColors.white.withOpacity(0.15))),
         child: Row(

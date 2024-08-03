@@ -22,7 +22,7 @@ class MyFilledButton extends StatelessWidget {
         clipBehavior: Clip.hardEdge,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(16),
-          gradient: AppGradients.blueToPurple
+          gradient: AppGradients.purpleToBlue
         ),
         child: Text(
           text,

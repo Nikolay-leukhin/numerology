@@ -1,22 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:numerology/features/auth/logic/auth_cubit.dart';
 import 'package:numerology/utils/utils.dart';
 
 import 'widgets/description_text_widget.dart';
 
-class AuthEnterNamePage extends StatefulWidget {
-
+class AuthEnterNamePage extends StatelessWidget {
   const AuthEnterNamePage({
     super.key,
   });
-
-  @override
-  State<AuthEnterNamePage> createState() => _AuthEnterNamePageState();
-}
-
-class _AuthEnterNamePageState extends State<AuthEnterNamePage> {
-  TextEditingController controller = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -24,41 +14,36 @@ class _AuthEnterNamePageState extends State<AuthEnterNamePage> {
       padding: const EdgeInsets.symmetric(horizontal: 20),
       child: Column(
         children: [
-        const SizedBox(
-        height: 32,
-      ),
-      const AuthDescriptionWidget(
-          text: "Для точных результатов нам необходимо знать ваше имя"
-      ),
-      const SizedBox(
-        height: 32,
-      ),
-      TextField(
-          controller: controller,
-          onChanged: (text) {
-            context.read<AuthCubit>().name = text;
-          },
-          style:const TextStyle(color: Colors.white),
-          decoration: InputDecoration(
+          const SizedBox(
+            height: 32,
+          ),
+          const AuthDescriptionWidget(
+              text: "Для точных результатов нам необходимо знать ваше имя"),
+          const SizedBox(
+            height: 32,
+          ),
+          TextField(
+            decoration: InputDecoration(
               enabledBorder: OutlineInputBorder(
-                borderSide: BorderSide(color: AppColors.white.withOpacity(0.15)),
+                borderSide:
+                    BorderSide(color: AppColors.white.withOpacity(0.15)),
                 borderRadius: BorderRadius.circular(16),
               ),
               focusedBorder: OutlineInputBorder(
-                borderSide: BorderSide(color: AppColors.white.withOpacity(0.15)),
+                borderSide:
+                    BorderSide(color: AppColors.white.withOpacity(0.15)),
                 borderRadius: BorderRadius.circular(16),
               ),
               contentPadding: const EdgeInsets.all(16).copyWith(left: 20),
               filled: true,
               fillColor: AppColors.darkPurple,
               hintText: "Введите своё имя",
-              hintStyle: AppFonts.f20w600.copyWith(color: AppColors.white.withOpacity(0.4)),
-    ),)
-    ]
-    ,
-    )
-    ,
+              hintStyle: AppFonts.f20w600
+                  .copyWith(color: AppColors.white.withOpacity(0.4)),
+            ),
+          )
+        ],
+      ),
     );
   }
 }
-
