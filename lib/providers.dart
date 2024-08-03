@@ -4,7 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'app.dart';
 import 'features/app/data/app_repository.dart';
 import 'features/auth/logic/auth_cubit.dart';
-import 'features/home/data/homa_repository.dart';
+import 'features/home/data/home_repository.dart';
 import 'features/home/logic/cubit/home_cubit.dart';
 
 class MyRepositoryProvider extends StatelessWidget {
@@ -14,7 +14,7 @@ class MyRepositoryProvider extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiRepositoryProvider(providers: [
       RepositoryProvider(create: (context) => AppRepository()),
-      RepositoryProvider(create: (context) => HomaRepository()),
+      RepositoryProvider(create: (context) => HomeRepository()),
     ], child: const MyBlocProvider());
   }
 }

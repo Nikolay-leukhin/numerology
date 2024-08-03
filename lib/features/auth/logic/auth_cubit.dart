@@ -6,17 +6,15 @@ import 'package:numerology/utils/utils.dart';
 part 'auth_state.dart';
 
 class AuthCubit extends Cubit<AuthState> {
-  String name = "";
-  DateTime dateTime = DateTime.now();
-  Genders gender = Genders.male;
-  RelationshipStatuses statuses = RelationshipStatuses.none;
+  final UserModel user = UserModel(name: "уебан",
+      birthday: DateTime.now(),
+      gender: Genders.male,
+      status: RelationshipStatuses.none);
+
 
   AuthCubit() : super(AuthInitial());
 
   registerUser() async {
-    print(name);
-    print(dateTime);
-    print(gender);
-    print(statuses);
+
   }
 }

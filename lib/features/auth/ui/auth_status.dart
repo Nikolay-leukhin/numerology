@@ -26,7 +26,7 @@ class _AuthBirthdayPageState extends State<AuthStatusPage> {
     setState(() {
       currentStatus = newStatus;
     });
-    context.read<AuthCubit>().statuses = newStatus;
+    context.read<AuthCubit>().user.status = newStatus;
   }
 
   @override

@@ -12,4 +12,5 @@ class AppColors {
   static const Color dbNavBar = Color(0xff0F0045);
   static const Color unActiveColorText = Color(0xffC8C8C8);
   static const Color activeColorText = Colors.white;
+  static const Color grey = Color(0xffC4C4C4);
 }

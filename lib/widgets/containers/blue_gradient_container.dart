@@ -10,10 +10,12 @@ class BlueGradientContainer extends StatelessWidget {
     required this.child,
     this.width = double.infinity,
     this.borderRadius = 24,
+    this.backgroundImage
   });
 
   final double? width;
   final double? height;
+  final DecorationImage? backgroundImage;
   final Widget child;
   final double borderRadius;
 
@@ -30,6 +32,7 @@ class BlueGradientContainer extends StatelessWidget {
         ),
         gradient: AppGradients.purpleToBlue,
         borderRadius: BorderRadius.circular(borderRadius),
+        image: backgroundImage
       ),
       child: child,
     );
