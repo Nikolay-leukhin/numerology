@@ -4,6 +4,7 @@ import 'package:gradient_borders/box_borders/gradient_box_border.dart';
 import 'package:numerology/utils/assets.dart';
 import 'package:numerology/utils/colors.dart';
 import 'package:numerology/utils/fonts.dart';
+import 'package:numerology/utils/gradients.dart';
 import 'package:numerology/widgets/buttons/gradient_button.dart';
 import 'package:numerology/widgets/containers/blue_gradient_container.dart';
 import 'package:websafe_svg/websafe_svg.dart';
@@ -28,7 +29,7 @@ class _HomePageState extends State<HomePage> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          WebsafeSvg.asset("svg/logo_small.svg"),
+          WebsafeSvg.asset(Assets.svg('logo_small.svg')),
           const SizedBox(
             height: 16,
           ),
@@ -46,8 +47,8 @@ class _HomePageState extends State<HomePage> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      WebsafeSvg.asset("assets/svg/ornament_up.svg"),
-                      WebsafeSvg.asset("svg/active_subscription.svg"),
+                      WebsafeSvg.asset(Assets.svg('ornament_up.svg')),
+                      WebsafeSvg.asset(Assets.svg('active_subscription.svg')),
                     ],
                   ),
                   Column(
@@ -162,41 +163,121 @@ class AbilityNameWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      margin: const EdgeInsets.only(bottom: 8),
-      padding: const EdgeInsets.all(12),
-      decoration: BoxDecoration(
-          color: AppColors.darkBlue,
-          borderRadius: BorderRadius.circular(16),
-          border: Border.all(width: 2, color: AppColors.deepOcean)),
-      child: Row(
-        children: [
-          const AbilityNumberWidget(
-            color: Colors.yellow,
-            number: 12,
-          ),
-          const SizedBox(
-            width: 12,
-          ),
-          Text(
-            "Кто я?",
-            style: AppFonts.f20w700.copyWith(color: AppColors.white),
-          ),
-          const Spacer(),
-          InkWell(
-            borderRadius: BorderRadius.circular(500),
-            onTap: () {},
-            child: Ink(
-              decoration: const BoxDecoration(shape: BoxShape.circle),
-              padding: const EdgeInsets.all(6),
-              child: const Icon(
-                Icons.arrow_forward_ios_rounded,
-                size: 20,
-                color: AppColors.white,
-              ),
+    final size = MediaQuery.sizeOf(context);
+
+    return GestureDetector(
+      onTap: () {
+        showModalBottomSheet(
+            context: context,
+            builder: (context) => Container(
+                  width: double.infinity,
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 16, vertical: 12)
+                          .copyWith(bottom: 0),
+                  decoration: const BoxDecoration(
+                      gradient: AppGradients.purpleToBlue,
+                      borderRadius:
+                          BorderRadius.vertical(top: Radius.circular(16))),
+                  child: SingleChildScrollView(
+                    child: Column(
+                      mainAxisSize: MainAxisSize.min,
+                      crossAxisAlignment: CrossAxisAlignment.stretch,
+                      children: [
+                        Container(
+                          width: size.width - 32,
+                          padding: const EdgeInsets.all(14),
+                          decoration: BoxDecoration(
+                              color: AppColors.darkBlue,
+                              borderRadius: BorderRadius.circular(16),
+                              border: Border.all(
+                                  width: 2, color: AppColors.deepOcean)),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                              const AbilityNumberWidget(
+                                  number: 12, color: Colors.yellow),
+                              const SizedBox(
+                                width: 12,
+                              ),
+                              Flexible(
+                                child: Text(
+                                  "Предназначения личности",
+                                  style: AppFonts.f24w700.copyWith(
+                                      color: AppColors.white, height: 1),
+                                ),
+                              )
+                            ],
+                          ),
+                        ),
+                        const SizedBox(
+                          height: 44,
+                        ),
+                        Text(
+                          "Энергия",
+                          style:
+                              AppFonts.f20w700.copyWith(color: AppColors.white),
+                        ),
+                        Text(
+                          "Зона комфорта. Точка силы, являющаяся самой важной в матрице. Она показывает, через что человек может реализовываться в социуме наиболее эффективно и комфортно для себя.",
+                          style:
+                              AppFonts.f16w400.copyWith(color: AppColors.white),
+                        ),
+                        const SizedBox(
+                          height: 32,
+                        ),
+                        Text(
+                          "Описание аркана",
+                          style:
+                          AppFonts.f20w700.copyWith(color: AppColors.white),
+                        ),
+                        Text(
+                          "Человек с 12 арканом обычно переживает сложные жизненные ситуации, наполненные испытаниями и жертвами. Его уникальный взгляд на мир часто не понимают окружающие. Однако он обладает способностью глубоко понимать других и всегда готов прийти на помощь. Это человек, который готов на жертвы ради своей цели или из сострадания. Он также обладает творческим даром и может осуществить себя в различных областях искусства. Но благополучие такого человека зависит от того, находится ли его энергия в положительном или отрицательном состоянии."
+                           "В положительном состоянии человек с 12 арканом обладает уникальным взглядом на мир, который иногда кажется другим, будто он не от мира сего. Его рассуждения и мировоззрение сложно понять, но он часто замечается за советами. Он также очень сострадателен и милосерден, всегда готовый п"*5,
+                          style:
+                          AppFonts.f16w400.copyWith(color: AppColors.white),
+                        ),
+                      ],
+                    ),
+                  ),
+                ));
+      },
+      child: Container(
+        margin: const EdgeInsets.only(bottom: 8),
+        padding: const EdgeInsets.all(12),
+        decoration: BoxDecoration(
+            color: AppColors.darkBlue,
+            borderRadius: BorderRadius.circular(16),
+            border: Border.all(width: 2, color: AppColors.deepOcean)),
+        child: Row(
+          children: [
+            const AbilityNumberWidget(
+              color: Colors.yellow,
+              number: 12,
             ),
-          )
-        ],
+            const SizedBox(
+              width: 12,
+            ),
+            Text(
+              "Кто я?",
+              style: AppFonts.f20w700.copyWith(color: AppColors.white),
+            ),
+            const Spacer(),
+            InkWell(
+              borderRadius: BorderRadius.circular(500),
+              onTap: () {},
+              child: Ink(
+                decoration: const BoxDecoration(shape: BoxShape.circle),
+                padding: const EdgeInsets.all(6),
+                child: const Icon(
+                  Icons.arrow_forward_ios_rounded,
+                  size: 20,
+                  color: AppColors.white,
+                ),
+              ),
+            )
+          ],
+        ),
       ),
     );
   }

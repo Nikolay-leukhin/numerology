@@ -23,8 +23,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
     return SingleChildScrollView(
       child: Column(
         children: [
-          WebsafeSvg.asset(Assets.svg('profile_logo.svg')),
-          const SizedBox(height: 25),
+          const SizedBox(height: 6),
+          WebsafeSvg.asset(Assets.svg('profile_logo.svg'), ),
+          const SizedBox(height: 16),
           BlueGradientContainer(
               child: Column(
             children: [
