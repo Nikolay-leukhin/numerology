@@ -45,7 +45,7 @@ class _HomePageState extends State<HomePage> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      WebsafeSvg.asset("svg/ornament_up.svg"),
+                      WebsafeSvg.asset("assets/svg/ornament_up.svg"),
                       WebsafeSvg.asset("svg/active_subscription.svg"),
                     ],
                   ),

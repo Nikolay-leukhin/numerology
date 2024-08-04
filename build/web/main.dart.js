@@ -81465,7 +81465,7 @@ A.Lg.prototype={}
 A.zo.prototype={
 ac(){return new A.Th()}}
 A.Th.prototype={
-J(a){var s="svg/active_subscription.svg",r=null,q=A.ji("svg/logo_small.svg"),p=t.p,o=A.fj(A.b([A.ji("svg/ornament_up.svg"),A.ji(s)],p),B.bb,B.bf,B.O),n=$.I_()
+J(a){var s="svg/active_subscription.svg",r=null,q=A.ji("svg/logo_small.svg"),p=t.p,o=A.fj(A.b([A.ji("assets/svg/ornament_up.svg"),A.ji(s)],p),B.bb,B.bf,B.O),n=$.I_()
 return A.aAU(A.dX(A.b([q,B.bt,A.xF(B.FT,A.dX(A.b([o,A.dX(A.b([A.bY("\u041c\u0430\u0442\u0440\u0438\u0446\u0430 \u0441\u0443\u0434\u044c\u0431\u044b",r,r,r,n.aX(B.j),r,r),A.bY("\u041f\u043e\u0437\u043d\u0430\u0439\u0442\u0435 \u0441\u0435\u0431\u044f \u0447\u0435\u0440\u0435\u0437 \u0447\u0438\u0441\u043b\u043e\u0432\u044b\u0435 \u0440\u0430\u0441\u0447\u0435\u0442\u044b",r,r,r,$.awH().aX(B.DV),r,r)],p),B.bb,B.Q,B.bL)],p),B.d6,B.bf,B.O),175),B.bt,A.xF(r,A.dX(A.b([A.fj(A.b([A.ji(s),B.QJ,A.bY("\u0414\u043e\u0441\u0442\u0443\u043f \u043a \u043f\u043e\u043b\u043d\u043e\u0439 \u0432\u0435\u0440\u0441\u0438\u0438",r,r,r,n,r,r)],p),B.C,B.tf,B.O),B.bt,A.az6(56,new A.amB(),"\u041e\u0444\u043e\u0440\u043c\u0438\u0442\u044c \u043f\u043e\u0434\u043f\u0438\u0441\u043a\u0443")],p),B.C,B.Q,B.O),r),B.bt,A.xF(r,new A.yY(new A.amC(),A.dX(A.b([new A.jw(r),new A.jw(r),new A.jw(r),new A.jw(r),new A.jw(r),new A.jw(r),new A.jw(r)],p),B.C,B.Q,B.O),r),r)],p),B.d6,B.Q,B.O))}}
 A.amB.prototype={
 $0(){},
