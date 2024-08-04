@@ -1,22 +1,23 @@
 import 'package:flutter/material.dart';
+import 'package:numerology/utils/assets.dart';
 
 import '../../utils/colors.dart';
 
 class CustomScaffold extends StatelessWidget {
-  const CustomScaffold(
-      {super.key,
-      required this.body,
-      this.padding,
-      this.appBar,
-      this.bottomNavBar,
-      this.floatingButton,
-      this.canPop = true,
-      this.resize = false,
-      this.onPopInvoked,
-      this.isSafeArea = true,
-      this.floatingActionButtonLocation,
-      this.onTap,
-      this.backgroundImage = 'assets/images/bg.png'});
+  CustomScaffold({
+    super.key,
+    required this.body,
+    this.padding,
+    this.appBar,
+    this.bottomNavBar,
+    this.floatingButton,
+    this.canPop = true,
+    this.resize = false,
+    this.onPopInvoked,
+    this.isSafeArea = true,
+    this.floatingActionButtonLocation,
+    this.onTap,
+  });
 
   final Widget body;
   final PreferredSizeWidget? appBar;
@@ -24,7 +25,6 @@ class CustomScaffold extends StatelessWidget {
   final Widget? floatingButton;
   final bool canPop;
   final bool resize;
-  final String backgroundImage;
   final FloatingActionButtonLocation? floatingActionButtonLocation;
   final bool isSafeArea;
   final void Function(bool)? onPopInvoked;
@@ -63,7 +63,7 @@ class CustomScaffold extends StatelessWidget {
                   image: DecorationImage(
                       repeat: ImageRepeat.repeatY,
                       fit: BoxFit.cover,
-                      image: AssetImage(backgroundImage))),
+                      image: AssetImage(Assets.images('bg.png')))),
               child: isSafeArea ? SafeArea(child: child) : child)),
     );
   }

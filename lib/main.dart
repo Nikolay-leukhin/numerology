@@ -4,4 +4,3 @@ import 'package:numerology/providers.dart';
 void main() {
   runApp(const MyRepositoryProvider());
 }
-

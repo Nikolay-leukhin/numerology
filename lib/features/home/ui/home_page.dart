@@ -1,6 +1,7 @@
 import 'package:expansion_widget/expansion_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:gradient_borders/box_borders/gradient_box_border.dart';
+import 'package:numerology/utils/assets.dart';
 import 'package:numerology/utils/colors.dart';
 import 'package:numerology/utils/fonts.dart';
 import 'package:numerology/widgets/buttons/gradient_button.dart';
@@ -33,10 +34,10 @@ class _HomePageState extends State<HomePage> {
           ),
           BlueGradientContainer(
               height: 175,
-              backgroundImage: const DecorationImage(
+              backgroundImage: DecorationImage(
                   alignment: Alignment.centerRight,
                   fit: BoxFit.fitHeight,
-                  image: AssetImage("assets/images/book.png")),
+                  image: AssetImage(Assets.images("book.png"))),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -73,7 +74,7 @@ class _HomePageState extends State<HomePage> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  WebsafeSvg.asset('svg/active_subscription.svg'),
+                  WebsafeSvg.asset(Assets.svg('active_subscription.svg')),
                   const SizedBox(
                     width: 16,
                   ),
@@ -167,8 +168,7 @@ class AbilityNameWidget extends StatelessWidget {
       decoration: BoxDecoration(
           color: AppColors.darkBlue,
           borderRadius: BorderRadius.circular(16),
-          border:
-              Border.all(width: 2, color: AppColors.deepOcean)),
+          border: Border.all(width: 2, color: AppColors.deepOcean)),
       child: Row(
         children: [
           const AbilityNumberWidget(
@@ -180,16 +180,14 @@ class AbilityNameWidget extends StatelessWidget {
           ),
           Text(
             "Кто я?",
-            style: AppFonts.f20w700
-                .copyWith(color: AppColors.white),
+            style: AppFonts.f20w700.copyWith(color: AppColors.white),
           ),
           const Spacer(),
           InkWell(
             borderRadius: BorderRadius.circular(500),
             onTap: () {},
             child: Ink(
-              decoration:
-                  const BoxDecoration(shape: BoxShape.circle),
+              decoration: const BoxDecoration(shape: BoxShape.circle),
               padding: const EdgeInsets.all(6),
               child: const Icon(
                 Icons.arrow_forward_ios_rounded,

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:numerology/utils/assets.dart';
 import 'package:numerology/utils/colors.dart';
 import 'package:numerology/utils/fonts.dart';
 import 'package:numerology/widgets/containers/blue_gradient_container.dart';
@@ -22,7 +23,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
     return SingleChildScrollView(
       child: Column(
         children: [
-          WebsafeSvg.asset('svg/profile_logo.svg'),
+          WebsafeSvg.asset(Assets.svg('profile_logo.svg')),
           const SizedBox(height: 25),
           BlueGradientContainer(
               child: Column(
@@ -37,7 +38,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       color: Colors.red,
                     ),
                   ),
-                  WebsafeSvg.asset('svg/active_subscription.svg'),
+                  WebsafeSvg.asset(Assets.svg('active_subscription.svg')),
                 ],
               ),
               Row(
@@ -79,7 +80,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       ),
                     ],
                   ),
-                  WebsafeSvg.asset('svg/ornament.svg'),
+                  WebsafeSvg.asset(Assets.svg('ornament.svg')),
                 ],
               )
             ],
