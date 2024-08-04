@@ -41,6 +41,7 @@ dependencies:
   google_fonts: ^6.2.1
   websafe_svg: ^3.0.1+2
   gradient_borders: ^1.0.1
+  expansion_widget: ^0.1.0
 
 dev_dependencies:
   flutter_test:

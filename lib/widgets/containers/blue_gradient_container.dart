@@ -21,7 +21,7 @@ class BlueGradientContainer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return Ink(
       width: width,
       height: height,
       padding: const EdgeInsets.all(12),

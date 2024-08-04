@@ -13,4 +13,7 @@ class AppColors {
   static const Color unActiveColorText = Color(0xffC8C8C8);
   static const Color activeColorText = Colors.white;
   static const Color grey = Color(0xffC4C4C4);
+  static const Color darkBlue = Color(0xff231F5D);
+  static const Color deepOcean = Color(0xff352F8C);
+  static const Color ocean = Color(0xff3A358E);
 }
