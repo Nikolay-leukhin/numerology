@@ -15,7 +15,7 @@ class MyRepositoryProvider extends StatelessWidget {
     return MultiRepositoryProvider(providers: [
       RepositoryProvider(create: (context) => AppRepository()),
       RepositoryProvider(create: (context) => HomeRepository()),
-    ], child: const MyBlocProvider());
+    ], child:  MyBlocProvider());
   }
 }
 
@@ -35,7 +35,7 @@ class MyBlocProvider extends StatelessWidget {
           lazy: false,
         ),
       ],
-      child: const MyApp(),
+      child:  MyApp(),
     );
   }
 }
