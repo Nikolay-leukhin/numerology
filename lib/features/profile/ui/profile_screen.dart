@@ -110,10 +110,20 @@ class _ProfileScreenState extends State<ProfileScreen> {
               ),
             ],
           )),
+          const SizedBox(
+            height: 16,
+          ),
           BlueGradientContainer(
               child: Column(
-            children: [],
-          ))
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                'Ваши данные',
+                style: AppFonts.f20w700,
+              ),
+
+            ],
+          )),
         ],
       ),
     );
