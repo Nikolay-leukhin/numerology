@@ -18,8 +18,7 @@ class AppRoutes {
       case RouteNames.home:
         return MaterialPageRoute(builder: (ctx) => const HomeScreen());
       default:
-        return MaterialPageRoute(
-            builder: (ctx) => Container(color: Colors.yellow));
+        return MaterialPageRoute(builder: (ctx) => const AuthScreen());
     }
   }
 }
