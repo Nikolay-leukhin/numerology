@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:numerology/features/prices/data/prices_repository.dart';
 
 import 'app.dart';
 import 'features/app/data/app_repository.dart';
@@ -15,7 +16,8 @@ class MyRepositoryProvider extends StatelessWidget {
     return MultiRepositoryProvider(providers: [
       RepositoryProvider(create: (context) => AppRepository()),
       RepositoryProvider(create: (context) => HomeRepository()),
-    ], child:  MyBlocProvider());
+      RepositoryProvider(create: (context) => PricesRepository()),
+    ], child: MyBlocProvider());
   }
 }
 

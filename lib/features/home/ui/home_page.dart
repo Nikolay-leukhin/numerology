@@ -1,6 +1,7 @@
 import 'package:expansion_widget/expansion_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:gradient_borders/box_borders/gradient_box_border.dart';
+import 'package:numerology/routes/route_names.dart';
 import 'package:numerology/utils/assets.dart';
 import 'package:numerology/utils/colors.dart';
 import 'package:numerology/utils/fonts.dart';
@@ -87,7 +88,9 @@ class _HomePageState extends State<HomePage> {
               ),
               separator,
               GradientButton(
-                onTap: () {},
+                onTap: () {
+                  Navigator.pushNamed(context, RouteNames.prices);
+                },
                 text: 'Оформить подписку',
                 height: 56,
               ),

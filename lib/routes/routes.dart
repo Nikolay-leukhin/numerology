@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:numerology/features/auth/ui/auth_screen.dart';
 import 'package:numerology/features/home/ui/home_page.dart';
 import 'package:numerology/features/home/ui/home_screen.dart';
+import 'package:numerology/features/prices/ui/prices_screen.dart';
 import 'package:numerology/features/profile/ui/profile_screen.dart';
 import 'package:numerology/routes/route_names.dart';
 
@@ -17,6 +18,8 @@ class AppRoutes {
         return MaterialPageRoute(builder: (ctx) => const AuthScreen());
       case RouteNames.home:
         return MaterialPageRoute(builder: (ctx) => const HomeScreen());
+      case RouteNames.prices:
+        return MaterialPageRoute(builder: (ctx) => const PricesScreen());
       default:
         return MaterialPageRoute(builder: (ctx) => const AuthScreen());
     }
