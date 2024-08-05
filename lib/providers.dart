@@ -22,7 +22,7 @@ class MyRepositoryProvider extends StatelessWidget {
       RepositoryProvider(create: (context) => PricesRepository()),
       RepositoryProvider(create: (context) => AuthRepository()),
       RepositoryProvider(create: (context) => ProfileRepository()),
-    ], child: const MyBlocProvider());
+    ], child: MyBlocProvider());
   }
 }
 

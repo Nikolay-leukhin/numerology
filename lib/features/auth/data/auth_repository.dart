@@ -2,12 +2,12 @@ import 'package:numerology/models/user.dart';
 import 'package:numerology/utils/enums.dart';
 import 'package:numerology/utils/exeptions.dart';
 import 'package:rxdart/rxdart.dart';
-import 'package:tele_web_app/tele_web_app.dart';
+// import 'package:telegram_web_app/telegram_web_app.dart';
 
 class AuthRepository {
   UserModel? user;
 
-  final WebAppUser tgUser = TeleWebApp().initDataUnsafe.user!;
+  // final tgUser = TelegramWebApp.instance.initData.user;
 
   BehaviorSubject<AppAuthStateEnum> appState =
       BehaviorSubject.seeded(AppAuthStateEnum.wait);
