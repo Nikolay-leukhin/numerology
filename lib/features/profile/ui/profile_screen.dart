@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:numerology/utils/assets.dart';
 import 'package:numerology/utils/colors.dart';
 import 'package:numerology/utils/fonts.dart';
+import 'package:numerology/widgets/buttons/button_with_icon.dart';
 import 'package:numerology/widgets/containers/blue_gradient_container.dart';
 import 'package:numerology/widgets/text_field/gradient_text_field.dart';
 import 'package:websafe_svg/websafe_svg.dart';
@@ -27,7 +28,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
       child: Column(
         children: [
           const SizedBox(height: 6),
-          WebsafeSvg.asset(Assets.svg('profile_logo.svg'), ),
+          WebsafeSvg.asset(
+            Assets.svg('profile_logo.svg'),
+          ),
           const SizedBox(height: 16),
           BlueGradientContainer(
               child: Column(
@@ -135,7 +138,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
               GradientTextField(
                 controller: _nameController,
                 label: 'Имя',
-                suffixIcon: 'pen.svg',
+                suffixIcon: 'pen_small.svg',
               ),
               const SizedBox(
                 height: 8,
@@ -151,7 +154,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
               ),
               const GradientTextField(
                 label: 'Дата рождения',
-                suffixIcon: 'pen.svg',
+                suffixIcon: 'pen_small.svg',
                 initValue: '31.08.2004',
                 read0nly: true,
               ),
@@ -160,7 +163,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
               ),
               const GradientTextField(
                 label: 'Время рождения',
-                suffixIcon: 'pen.svg',
+                suffixIcon: 'pen_small.svg',
                 initValue: '15:15',
                 read0nly: true,
               ),
@@ -172,6 +175,62 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 suffixIcon: 'arrow_right.svg',
                 initValue: 'Женат',
                 read0nly: true,
+              ),
+            ],
+          )),
+          const SizedBox(
+            height: 12,
+          ),
+          BlueGradientContainer(
+              child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Padding(
+                padding: const EdgeInsets.only(left: 10),
+                child: Text(
+                  'Премиум',
+                  style: AppFonts.f20w700,
+                ),
+              ),
+              const SizedBox(
+                height: 16,
+              ),
+              ButtonWithIcon(
+                suffixIcon: 'arrow_right.svg',
+                text: 'Не активен',
+                onTap: () {},
+              ),
+            ],
+          )),
+          const SizedBox(
+            height: 12,
+          ),
+          BlueGradientContainer(
+              child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Padding(
+                padding: const EdgeInsets.only(left: 10),
+                child: Text(
+                  'Другое',
+                  style: AppFonts.f20w700,
+                ),
+              ),
+              const SizedBox(
+                height: 16,
+              ),
+              ButtonWithIcon(
+                suffixIcon: 'arrow_right.svg',
+                text: 'Конфиденциальность',
+                onTap: () {},
+              ),
+              const SizedBox(
+                height: 8,
+              ),
+              ButtonWithIcon(
+                suffixIcon: 'arrow_right.svg',
+                text: 'Связаться с поддержкой',
+                onTap: () {},
               ),
             ],
           )),

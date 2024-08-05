@@ -1,6 +1,5 @@
 import 'package:expansion_widget/expansion_widget.dart';
 import 'package:flutter/material.dart';
-import 'package:gradient_borders/box_borders/gradient_box_border.dart';
 import 'package:numerology/routes/route_names.dart';
 import 'package:numerology/utils/assets.dart';
 import 'package:numerology/utils/colors.dart';
@@ -97,7 +96,7 @@ class _HomePageState extends State<HomePage> {
                     color: AppColors.darkBlue
                   ),
                   padding: const EdgeInsets.all(10),
-                  child: WebsafeSvg.asset(Assets.svg("pen.svg"), width: 20),
+                  child: WebsafeSvg.asset(Assets.svg("pen_big.svg"), width: 20),
                 ),
               )
             ],
