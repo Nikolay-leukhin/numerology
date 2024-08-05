@@ -10,6 +10,6 @@ class AuthCubit extends Cubit<AuthState> {
   AuthCubit({required this.authRepository}) : super(AuthInitial());
 
   registerUser() async {
-    // authRepository.registerWithTgId();
+    authRepository.registerWithTgId();
   }
 }

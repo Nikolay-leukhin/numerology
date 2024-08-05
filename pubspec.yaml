@@ -12,8 +12,8 @@ dependencies:
   flutter:
     sdk: flutter
 
-#  tele_web_app:
-#    git: https://github.com/yeikel16/tele_web_app.git
+  tele_web_app:
+    git: https://github.com/yeikel16/tele_web_app.git
 
   cupertino_icons: ^1.0.6
   bloc: ^8.1.4
@@ -23,7 +23,7 @@ dependencies:
   websafe_svg: ^3.0.1+2
   gradient_borders: ^1.0.1
   expansion_widget: ^0.1.0
-#  rxdart: ^0.28.0
+  rxdart: ^0.28.0
 
 dev_dependencies:
   flutter_test:

@@ -31,60 +31,62 @@ class _AuthGenderPageState extends State<AuthGenderPage> {
 
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 20),
-      child: Column(
-        children: [
-          const SizedBox(
-            height: 32,
-          ),
-          const AuthDescriptionWidget(text: "Это покажет баланс вашей мужской и женской энергии."),
-          const SizedBox(
-            height: 32,
-          ),
-          Row(
-            children: [
-              Image.asset(
-                "assets/images/man_${currentGender == Genders.male ? "active" : "passive"}.png",
-                width: size.width * 0.437,
-                height: size.width * 0.381,
-                fit: BoxFit.fitHeight,
-              ),
-              const SizedBox(
-                width: 18,
-              ),
-              SelectBoxWidget(
-                text: "Мужчина",
-                width: size.width - size.width * 0.437 - 40 - 18,
-                value: currentGender == Genders.male,
-                onClick: () {
-                  selectGender(Genders.male);
-                },
-              ),
-            ],
-          ),
-          const SizedBox(
-            height: 32,
-          ),
-          Row(
-            children: [
-              Image.asset(
-                "assets/images/female_${currentGender == Genders.female ? "active" : "passive"}.png",
-                width: size.width * 0.437,
-                height: size.width * 0.381,
-              ),
-              const SizedBox(
-                width: 18,
-              ),
-              SelectBoxWidget(
-                text: "Женщина",
-                width: size.width - size.width * 0.437 - 40 - 18,
-                value: currentGender == Genders.female,
-                onClick: () {
-                  selectGender(Genders.female);
-                },
-              ),
-            ],
-          ),
-        ],
+      child: SingleChildScrollView(
+        child: Column(
+          children: [
+            const SizedBox(
+              height: 32,
+            ),
+            const AuthDescriptionWidget(text: "Это покажет баланс вашей мужской и женской энергии."),
+            const SizedBox(
+              height: 32,
+            ),
+            Row(
+              children: [
+                Image.asset(
+                  "assets/images/man_${currentGender == Genders.male ? "active" : "passive"}.png",
+                  width: size.width * 0.437,
+                  height: size.width * 0.381,
+                  fit: BoxFit.fitHeight,
+                ),
+                const SizedBox(
+                  width: 18,
+                ),
+                SelectBoxWidget(
+                  text: "Мужчина",
+                  width: size.width - size.width * 0.437 - 40 - 18,
+                  value: currentGender == Genders.male,
+                  onClick: () {
+                    selectGender(Genders.male);
+                  },
+                ),
+              ],
+            ),
+            const SizedBox(
+              height: 32,
+            ),
+            Row(
+              children: [
+                Image.asset(
+                  "assets/images/female_${currentGender == Genders.female ? "active" : "passive"}.png",
+                  width: size.width * 0.437,
+                  height: size.width * 0.381,
+                ),
+                const SizedBox(
+                  width: 18,
+                ),
+                SelectBoxWidget(
+                  text: "Женщина",
+                  width: size.width - size.width * 0.437 - 40 - 18,
+                  value: currentGender == Genders.female,
+                  onClick: () {
+                    selectGender(Genders.female);
+                  },
+                ),
+              ],
+            ),
+          ],
+        ),
       ),
     );
   }

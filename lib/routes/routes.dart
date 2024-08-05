@@ -25,7 +25,7 @@ class AppRoutes {
       case RouteNames.prices:
         return MaterialPageRoute(builder: (ctx) => const PricesScreen());
       default:
-        return MaterialPageRoute(builder: (ctx) => const AuthScreen());
+        return MaterialPageRoute(builder: (ctx) => const AppStateWidget());
     }
   }
 }
