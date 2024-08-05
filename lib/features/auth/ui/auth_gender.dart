@@ -6,7 +6,6 @@ import 'package:numerology/utils/utils.dart';
 
 import 'widgets/description_text_widget.dart';
 
-
 class AuthGenderPage extends StatefulWidget {
   const AuthGenderPage({
     super.key,
@@ -17,12 +16,14 @@ class AuthGenderPage extends StatefulWidget {
 }
 
 class _AuthGenderPageState extends State<AuthGenderPage> {
-  var currentGender = Genders.male;
+  Genders currentGender = Genders.male;
 
   selectGender(Genders gender) {
     currentGender = gender;
     context.read<AuthCubit>().authRepository.user!.gender = currentGender;
     setState(() {});
+    print(currentGender);
+    print(gender);
   }
 
   @override
@@ -37,17 +38,21 @@ class _AuthGenderPageState extends State<AuthGenderPage> {
             const SizedBox(
               height: 32,
             ),
-            const AuthDescriptionWidget(text: "Это покажет баланс вашей мужской и женской энергии."),
+            const AuthDescriptionWidget(
+                text: "Это покажет баланс вашей мужской и женской энергии."),
             const SizedBox(
               height: 32,
             ),
             Row(
               children: [
-                Image.asset(
-                  "assets/images/man_${currentGender == Genders.male ? "active" : "passive"}.png",
-                  width: size.width * 0.437,
-                  height: size.width * 0.381,
-                  fit: BoxFit.fitHeight,
+                Container(
+                  constraints: BoxConstraints(maxHeight: 180),
+                  child: Image.asset(
+                    "assets/images/man_${currentGender == Genders.male ? "active" : "passive"}.png",
+                    width: size.width * 0.437,
+                    height: size.width * 0.381,
+                    fit: BoxFit.fitHeight,
+                  ),
                 ),
                 const SizedBox(
                   width: 18,
@@ -67,10 +72,13 @@ class _AuthGenderPageState extends State<AuthGenderPage> {
             ),
             Row(
               children: [
-                Image.asset(
-                  "assets/images/female_${currentGender == Genders.female ? "active" : "passive"}.png",
-                  width: size.width * 0.437,
-                  height: size.width * 0.381,
+                Container(
+                  constraints: BoxConstraints(maxHeight: 180),
+                  child: Image.asset(
+                    "assets/images/female_${currentGender == Genders.female ? "active" : "passive"}.png",
+                    width: size.width * 0.437,
+                    height: size.width * 0.381,
+                  ),
                 ),
                 const SizedBox(
                   width: 18,

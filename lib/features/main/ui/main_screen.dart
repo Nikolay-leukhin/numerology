@@ -71,6 +71,39 @@ class _HomePageState extends State<HomePage> {
               )),
           separator,
           BlueGradientContainer(
+              child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Column(
+                mainAxisSize: MainAxisSize.min,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    "22.07.2004",
+                    style: AppFonts.f20w700.copyWith(color: AppColors.white),
+                  ),
+                  Text(
+                    'Дата рождения',
+                    style: AppFonts.f12w500.copyWith(color: AppColors.grey),
+                  )
+                ],
+              ),
+              InkWell(
+                borderRadius: BorderRadius.circular(500),
+                onTap: () {},
+                child: Ink(
+                  decoration: const BoxDecoration(
+                    shape: BoxShape.circle,
+                    color: AppColors.darkBlue
+                  ),
+                  padding: const EdgeInsets.all(10),
+                  child: WebsafeSvg.asset(Assets.svg("pen.svg"), width: 20),
+                ),
+              )
+            ],
+          )),
+          separator,
+          BlueGradientContainer(
               child: Column(
             children: [
               Row(
@@ -232,13 +265,14 @@ class AbilityNameWidget extends StatelessWidget {
                         Text(
                           "Описание аркана",
                           style:
-                          AppFonts.f20w700.copyWith(color: AppColors.white),
+                              AppFonts.f20w700.copyWith(color: AppColors.white),
                         ),
                         Text(
                           "Человек с 12 арканом обычно переживает сложные жизненные ситуации, наполненные испытаниями и жертвами. Его уникальный взгляд на мир часто не понимают окружающие. Однако он обладает способностью глубоко понимать других и всегда готов прийти на помощь. Это человек, который готов на жертвы ради своей цели или из сострадания. Он также обладает творческим даром и может осуществить себя в различных областях искусства. Но благополучие такого человека зависит от того, находится ли его энергия в положительном или отрицательном состоянии."
-                           "В положительном состоянии человек с 12 арканом обладает уникальным взглядом на мир, который иногда кажется другим, будто он не от мира сего. Его рассуждения и мировоззрение сложно понять, но он часто замечается за советами. Он также очень сострадателен и милосерден, всегда готовый п"*5,
+                                  "В положительном состоянии человек с 12 арканом обладает уникальным взглядом на мир, который иногда кажется другим, будто он не от мира сего. Его рассуждения и мировоззрение сложно понять, но он часто замечается за советами. Он также очень сострадателен и милосерден, всегда готовый п" *
+                              5,
                           style:
-                          AppFonts.f16w400.copyWith(color: AppColors.white),
+                              AppFonts.f16w400.copyWith(color: AppColors.white),
                         ),
                       ],
                     ),

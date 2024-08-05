@@ -126,7 +126,7 @@ class _AuthScreenState extends State<AuthScreen> {
           controller: _pageController,
           physics: const NeverScrollableScrollPhysics(),
           scrollDirection: Axis.horizontal,
-          children: const [
+          children: [
             AuthEnterNamePage(),
             AuthBirthdayPage(),
             AuthTimePage(),
@@ -136,20 +136,15 @@ class _AuthScreenState extends State<AuthScreen> {
       bottomNavBar: Padding(
         padding: const EdgeInsets.all(20),
         child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            OutlineButton(
-              onTap: () {},
-              text: "Пропустить",
-              width: (size.width - 40 - 12) * 0.5,
-              height: 48,
-            ),
+
             MyFilledButton(
               onTap: () {
                 nextPage();
               },
               text: "Дальше",
-              width: (size.width - 40 - 12) * 0.5,
+              width: (size.width - 40),
               height: 48,
             )
           ],

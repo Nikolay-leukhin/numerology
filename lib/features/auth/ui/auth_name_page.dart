@@ -23,6 +23,7 @@ class AuthEnterNamePage extends StatelessWidget {
             height: 32,
           ),
           TextField(
+            style: AppFonts.f20w600.copyWith(color: AppColors.white),
             decoration: InputDecoration(
               enabledBorder: OutlineInputBorder(
                 borderSide:
