@@ -19,7 +19,7 @@ class MyRepositoryProvider extends StatelessWidget {
     return MultiRepositoryProvider(providers: [
       RepositoryProvider(create: (context) => AppRepository()),
       RepositoryProvider(create: (context) => HomeRepository()),
-      RepositoryProvider(create: (context) => PricesRepository(),
+      RepositoryProvider(create: (context) => PricesRepository()),
       RepositoryProvider(create: (context) => AuthRepository()),
       RepositoryProvider(create: (context) => ProfileRepository()),
     ], child: const MyBlocProvider());
