@@ -1,6 +1,5 @@
 import 'package:expansion_widget/expansion_widget.dart';
 import 'package:flutter/material.dart';
-import 'package:gradient_borders/box_borders/gradient_box_border.dart';
 import 'package:numerology/utils/assets.dart';
 import 'package:numerology/utils/colors.dart';
 import 'package:numerology/utils/fonts.dart';
@@ -46,8 +45,8 @@ class _HomePageState extends State<HomePage> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      WebsafeSvg.asset("assets/svg/ornament_up.svg"),
-                      WebsafeSvg.asset("svg/active_subscription.svg"),
+                      WebsafeSvg.asset(Assets.svg("ornament_up.svg")),
+                      WebsafeSvg.asset(Assets.svg("active_subscription.svg")),
                     ],
                   ),
                   Column(
@@ -137,7 +136,7 @@ class _HomePageState extends State<HomePage> {
                         ],
                       ),
                     ),
-                content: Column(
+                content: const Column(
                   children: [
                     AbilityNameWidget(),
                     AbilityNameWidget(),

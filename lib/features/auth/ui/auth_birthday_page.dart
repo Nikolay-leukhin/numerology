@@ -51,9 +51,9 @@ class _AuthBirthdayPageState extends State<AuthBirthdayPage> {
                   mode: CupertinoDatePickerMode.date,
                   use24hFormat: true,
                   onDateTimeChanged: (DateTime newDate) {
-                    context.read<AuthCubit>().user.birthday = context
-                        .read<AuthCubit>()
-                        .user.birthday
+                    context.read<AuthCubit>().authRepository.user!.birthday = context
+                        .read<AuthCubit>().authRepository
+                        .user!.birthday
                         .copyWith(
                             day: newDate.day,
                             year: newDate.year,

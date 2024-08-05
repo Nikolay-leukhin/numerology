@@ -1,20 +1,15 @@
 import 'package:bloc/bloc.dart';
 import 'package:meta/meta.dart';
-import 'package:numerology/models/user.dart';
-import 'package:numerology/utils/utils.dart';
+import 'package:numerology/features/auth/data/auth_repository.dart';
 
 part 'auth_state.dart';
 
 class AuthCubit extends Cubit<AuthState> {
-  final UserModel user = UserModel(name: "уебан",
-      birthday: DateTime.now(),
-      gender: Genders.male,
-      status: RelationshipStatuses.none);
+  final AuthRepository authRepository;
 
-
-  AuthCubit() : super(AuthInitial());
+  AuthCubit({required this.authRepository}) : super(AuthInitial());
 
   registerUser() async {
-
+    authRepository.registerWithTgId();
   }
 }

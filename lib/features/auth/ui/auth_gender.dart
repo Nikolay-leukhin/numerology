@@ -21,7 +21,7 @@ class _AuthGenderPageState extends State<AuthGenderPage> {
 
   selectGender(Genders gender) {
     currentGender = gender;
-    context.read<AuthCubit>().user.gender = currentGender;
+    context.read<AuthCubit>().authRepository.user!.gender = currentGender;
     setState(() {});
   }
 

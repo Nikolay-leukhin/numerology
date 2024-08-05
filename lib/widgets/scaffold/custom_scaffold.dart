@@ -4,7 +4,7 @@ import 'package:numerology/utils/assets.dart';
 import '../../utils/colors.dart';
 
 class CustomScaffold extends StatelessWidget {
-  CustomScaffold({
+  const CustomScaffold({
     super.key,
     required this.body,
     this.padding,

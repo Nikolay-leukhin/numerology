@@ -12,7 +12,6 @@ import 'package:numerology/widgets/buttons/filled_button.dart';
 import 'package:numerology/widgets/buttons/outline_button.dart';
 import 'package:numerology/widgets/scaffold/custom_scaffold.dart';
 
-import '../../../routes/route_names.dart';
 import '../logic/auth_cubit.dart';
 
 class AuthScreen extends StatefulWidget {
@@ -30,20 +29,19 @@ class _AuthScreenState extends State<AuthScreen> {
     "Ваш пол",
     "Статус отношений"
   ];
-  PageController _pageController = PageController();
+  final PageController _pageController = PageController();
 
   int currentPageIndex = 0;
 
   nextPage() {
     if (currentPageIndex == 4) {
       context.read<AuthCubit>().registerUser();
-      Navigator.pushNamed(context, RouteNames.home);
       return;
     }
     currentPageIndex += 1;
     _pageController.animateTo(
         MediaQuery.of(context).size.width * currentPageIndex,
-        duration: new Duration(milliseconds: 300),
+        duration: const Duration(milliseconds: 300),
         curve: Curves.easeIn);
     setState(() {});
   }
@@ -65,7 +63,7 @@ class _AuthScreenState extends State<AuthScreen> {
     final size = MediaQuery.sizeOf(context);
 
     return CustomScaffold(
-      padding: EdgeInsets.all(0),
+      padding: const EdgeInsets.all(0),
       appBar: PreferredSize(
         preferredSize: Size(size.width, 115),
         child: Column(

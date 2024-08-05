@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:numerology/features/app/logic/app_cubit.dart';
+import 'package:numerology/features/auth/data/auth_repository.dart';
+import 'package:numerology/features/profile/data/profile_repository.dart';
 
 import 'app.dart';
 import 'features/app/data/app_repository.dart';
@@ -15,7 +18,9 @@ class MyRepositoryProvider extends StatelessWidget {
     return MultiRepositoryProvider(providers: [
       RepositoryProvider(create: (context) => AppRepository()),
       RepositoryProvider(create: (context) => HomeRepository()),
-    ], child:  MyBlocProvider());
+      RepositoryProvider(create: (context) => AuthRepository()),
+      RepositoryProvider(create: (context) => ProfileRepository()),
+    ], child: const MyBlocProvider());
   }
 }
 
@@ -24,6 +29,10 @@ class MyBlocProvider extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    AuthRepository authRepository =
+        RepositoryProvider.of<AuthRepository>(context);
+    ProfileRepository profileRepository =
+        RepositoryProvider.of<ProfileRepository>(context);
     return MultiBlocProvider(
       providers: [
         BlocProvider(
@@ -31,11 +40,15 @@ class MyBlocProvider extends StatelessWidget {
           lazy: false,
         ),
         BlocProvider(
-          create: (context) => AuthCubit(),
+          create: (context) => AuthCubit(authRepository: authRepository),
+          lazy: false,
+        ),
+        BlocProvider(
+          create: (context) => AppCubit(authRepository, profileRepository),
           lazy: false,
         ),
       ],
-      child:  MyApp(),
+      child: const MyApp(),
     );
   }
 }

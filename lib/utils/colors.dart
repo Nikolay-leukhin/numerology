@@ -16,4 +16,5 @@ class AppColors {
   static const Color darkBlue = Color(0xff231F5D);
   static const Color deepOcean = Color(0xff352F8C);
   static const Color ocean = Color(0xff3A358E);
+  static const Color lightBlue = Color(0xFF3A348D);
 }

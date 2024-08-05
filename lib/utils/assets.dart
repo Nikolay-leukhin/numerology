@@ -1,7 +1,7 @@
 import 'package:flutter/foundation.dart';
 
 abstract class Assets {
-  static String rootPath(){
+  static String _rootPath(){
     if (kDebugMode){
       return '';
     }
@@ -11,7 +11,7 @@ abstract class Assets {
   }
 
 
-  static String svg(String filename) => '${rootPath()}/svg/$filename';
+  static String svg(String filename) => '${_rootPath()}/svg/$filename';
 
-  static String images(String filename) => '${rootPath()}/images/$filename';
+  static String images(String filename) => '${_rootPath()}/images/$filename';
 }
