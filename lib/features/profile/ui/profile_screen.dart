@@ -3,6 +3,7 @@ import 'package:numerology/utils/assets.dart';
 import 'package:numerology/utils/colors.dart';
 import 'package:numerology/utils/fonts.dart';
 import 'package:numerology/widgets/containers/blue_gradient_container.dart';
+import 'package:numerology/widgets/text_field/gradient_text_field.dart';
 import 'package:websafe_svg/websafe_svg.dart';
 
 import '../../../widgets/buttons/gradient_button.dart';
@@ -15,10 +16,12 @@ class ProfileScreen extends StatefulWidget {
 }
 
 class _ProfileScreenState extends State<ProfileScreen> {
+  final TextEditingController _nameController =
+      TextEditingController(text: 'Александр');
+
   @override
   Widget build(BuildContext context) {
     final width = MediaQuery.sizeOf(context).width;
-    final height = MediaQuery.sizeOf(context).height;
 
     return SingleChildScrollView(
       child: Column(
@@ -119,11 +122,57 @@ class _ProfileScreenState extends State<ProfileScreen> {
               child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text(
-                'Ваши данные',
-                style: AppFonts.f20w700,
+              Padding(
+                padding: const EdgeInsets.only(left: 10),
+                child: Text(
+                  'Ваши данные',
+                  style: AppFonts.f20w700,
+                ),
               ),
-
+              const SizedBox(
+                height: 16,
+              ),
+              GradientTextField(
+                controller: _nameController,
+                label: 'Имя',
+                suffixIcon: 'pen.svg',
+              ),
+              const SizedBox(
+                height: 8,
+              ),
+              const GradientTextField(
+                label: 'Пол',
+                suffixIcon: 'refresh.svg',
+                initValue: 'Муржской',
+                read0nly: true,
+              ),
+              const SizedBox(
+                height: 8,
+              ),
+              const GradientTextField(
+                label: 'Дата рождения',
+                suffixIcon: 'pen.svg',
+                initValue: '31.08.2004',
+                read0nly: true,
+              ),
+              const SizedBox(
+                height: 8,
+              ),
+              const GradientTextField(
+                label: 'Время рождения',
+                suffixIcon: 'pen.svg',
+                initValue: '15:15',
+                read0nly: true,
+              ),
+              const SizedBox(
+                height: 8,
+              ),
+              const GradientTextField(
+                label: 'Статус отношений',
+                suffixIcon: 'arrow_right.svg',
+                initValue: 'Женат',
+                read0nly: true,
+              ),
             ],
           )),
         ],

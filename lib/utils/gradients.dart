@@ -21,4 +21,9 @@ class AppGradients {
     end: Alignment.center,
     colors: [Color(0xff6730FF), Color(0xFF7C5BFF)],
   );
+  static const LinearGradient darkBlueToLightBlue = LinearGradient(
+    begin: Alignment.centerLeft,
+    end: Alignment.centerRight,
+    colors: [Color(0xff36308C), Color(0xFF393677)],
+  );
 }

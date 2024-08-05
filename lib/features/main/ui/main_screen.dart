@@ -141,7 +141,7 @@ class _HomePageState extends State<HomePage> {
                         ],
                       ),
                     ),
-                content: Column(
+                content: const Column(
                   children: [
                     AbilityNameWidget(),
                     AbilityNameWidget(),

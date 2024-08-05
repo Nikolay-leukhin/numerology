@@ -33,7 +33,7 @@ class _AuthBirthdayPageState extends State<AuthTimePage> {
           const AuthDescriptionWidget(
               text:
                   "Время важно для определения ваших домов, восходящего знака и точного положения Луны."),
-          Spacer(
+          const Spacer(
             flex: 1,
           ),
           Container(
@@ -52,10 +52,14 @@ class _AuthBirthdayPageState extends State<AuthTimePage> {
                   mode: CupertinoDatePickerMode.time,
                   use24hFormat: false,
                   onDateTimeChanged: (DateTime newDate) {
-                    context.read<AuthCubit>().user.birthday = context
-                        .read<AuthCubit>()
-                        .user.birthday
-                        .copyWith(hour: newDate.hour, minute: newDate.minute);
+                    context.read<AuthCubit>().authRepository.user!.birthday =
+                        context
+                            .read<AuthCubit>()
+                            .authRepository
+                            .user!
+                            .birthday
+                            .copyWith(
+                                hour: newDate.hour, minute: newDate.minute);
                   },
                 )),
           ),
