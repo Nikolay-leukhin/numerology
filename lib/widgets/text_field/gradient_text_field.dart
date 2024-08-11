@@ -61,6 +61,7 @@ class GradientTextField extends StatelessWidget {
                   height: 30,
                   width: width - 160,
                   child: TextFormField(
+                    key: Key(initValue.toString()),
                     textAlign: TextAlign.start,
                     onChanged: onChange,
                     validator: validator,

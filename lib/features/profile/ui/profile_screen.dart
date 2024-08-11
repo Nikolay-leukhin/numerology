@@ -22,6 +22,11 @@ class ProfileScreen extends StatefulWidget {
 class _ProfileScreenState extends State<ProfileScreen> {
   final TextEditingController _nameController =
       TextEditingController(text: 'Александр');
+  bool gender = true;
+
+  void _changeRotation() {
+    setState(() => gender = !gender);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -150,9 +155,15 @@ class _ProfileScreenState extends State<ProfileScreen> {
               ),
               GradientTextField(
                 label: 'Пол',
-                suffixIcon: WebsafeSvg.asset(Assets.svg('refresh.svg')),
-                initValue: 'Муржской',
+                suffixIcon: AnimatedRotation(
+                    turns: gender ? 1 : 0,
+                    duration: const Duration(milliseconds: 300),
+                    child: WebsafeSvg.asset(Assets.svg('refresh.svg'))),
+                initValue: gender ? 'Мужской' : 'Женский',
                 read0nly: true,
+                onTap: () {
+                  _changeRotation();
+                },
               ),
               const SizedBox(
                 height: 8,
