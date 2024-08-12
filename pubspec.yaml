@@ -12,7 +12,9 @@ dependencies:
   flutter:
     sdk: flutter
 
-#  telegram_web_app: ^0.1.5
+  tele_web_app:
+    git: https://github.com/yeikel16/tele_web_app.git
+
   cupertino_icons: ^1.0.6
   bloc: ^8.1.4
   flutter_bloc: ^8.1.6

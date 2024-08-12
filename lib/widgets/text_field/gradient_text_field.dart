@@ -20,13 +20,15 @@ class GradientTextField extends StatelessWidget {
       required this.label,
       this.read0nly = false,
       required this.suffixIcon,
-      this.maskTextInputFormatter});
+      this.maskTextInputFormatter,
+      this.onSave});
 
   final String? Function(String?)? validator;
   final TextEditingController? controller;
 
   final TextInputType? keyboardType;
   final Function(String?)? onChange;
+  final Function()? onSave;
   final String? initValue;
   final Function()? onTap;
   final String label;
@@ -45,8 +47,8 @@ class GradientTextField extends StatelessWidget {
         decoration: BoxDecoration(
           color: AppColors.darkBlue,
           borderRadius: BorderRadius.circular(12),
-          border:
-              const GradientBoxBorder(gradient: AppGradients.darkBlueToLightBlue),
+          border: const GradientBoxBorder(
+              gradient: AppGradients.darkBlueToLightBlue),
         ),
         alignment: Alignment.center,
         padding: const EdgeInsets.fromLTRB(12, 0, 12, 12),
@@ -61,6 +63,9 @@ class GradientTextField extends StatelessWidget {
                   height: 30,
                   width: width - 160,
                   child: TextFormField(
+                    onTap: () {
+                      print('qef');
+                    },
                     key: Key(initValue.toString()),
                     textAlign: TextAlign.start,
                     onChanged: onChange,

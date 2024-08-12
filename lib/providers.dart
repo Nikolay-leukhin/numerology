@@ -35,6 +35,7 @@ class MyBlocProvider extends StatelessWidget {
         RepositoryProvider.of<AuthRepository>(context);
     ProfileRepository profileRepository =
         RepositoryProvider.of<ProfileRepository>(context);
+
     return MultiBlocProvider(
       providers: [
         BlocProvider(
