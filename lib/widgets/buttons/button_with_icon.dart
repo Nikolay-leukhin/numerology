@@ -15,7 +15,7 @@ class ButtonWithIcon extends StatelessWidget {
 
   final String text;
   final Function() onTap;
-  final String suffixIcon;
+  final Widget suffixIcon;
 
   @override
   Widget build(BuildContext context) {
@@ -24,7 +24,7 @@ class ButtonWithIcon extends StatelessWidget {
     return InkWell(
       onTap: onTap,
       child: Container(
-        height: 61,
+        height: 66,
         decoration: BoxDecoration(
           color: AppColors.darkBlue,
           borderRadius: BorderRadius.circular(12),
@@ -37,17 +37,16 @@ class ButtonWithIcon extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             SizedBox(
-              height: 30,
               width: width - 160,
               child: Text(
                 text,
-                style: AppFonts.f19w700,
+                style: AppFonts.f17w700,
               ),
             ),
             CircleAvatar(
               backgroundColor: AppColors.lightBlue,
               radius: 25,
-              child: WebsafeSvg.asset(Assets.svg(suffixIcon)),
+              child: suffixIcon,
             )
           ],
         ),

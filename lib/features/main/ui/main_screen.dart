@@ -10,14 +10,14 @@ import 'package:numerology/widgets/containers/blue_gradient_container.dart';
 import 'package:numerology/widgets/custom_paint/matrix.dart';
 import 'package:websafe_svg/websafe_svg.dart';
 
-class HomePage extends StatefulWidget {
-  const HomePage({super.key});
+class MainScreen extends StatefulWidget {
+  const MainScreen({super.key});
 
   @override
-  State<HomePage> createState() => _HomePageState();
+  State<MainScreen> createState() => _MainScreenState();
 }
 
-class _HomePageState extends State<HomePage> {
+class _MainScreenState extends State<MainScreen> {
   bool isExpanded = false;
 
   @override

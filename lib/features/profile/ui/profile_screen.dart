@@ -1,12 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:numerology/routes/routes.dart';
 import 'package:numerology/utils/assets.dart';
 import 'package:numerology/utils/colors.dart';
 import 'package:numerology/utils/fonts.dart';
+import 'package:numerology/utils/mask_text_formatter.dart';
 import 'package:numerology/widgets/buttons/button_with_icon.dart';
 import 'package:numerology/widgets/containers/blue_gradient_container.dart';
 import 'package:numerology/widgets/text_field/gradient_text_field.dart';
 import 'package:websafe_svg/websafe_svg.dart';
 
+import '../../../routes/route_names.dart';
 import '../../../widgets/buttons/gradient_button.dart';
 
 class ProfileScreen extends StatefulWidget {
@@ -19,6 +22,11 @@ class ProfileScreen extends StatefulWidget {
 class _ProfileScreenState extends State<ProfileScreen> {
   final TextEditingController _nameController =
       TextEditingController(text: 'Александр');
+  bool gender = true;
+
+  void _changeRotation() {
+    setState(() => gender = !gender);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -112,7 +120,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 height: 16,
               ),
               GradientButton(
-                onTap: () {},
+                onTap: () {
+                  Navigator.pushNamed(context, RouteNames.prices);
+                },
                 text: 'Оформить подписку',
                 height: 56,
               ),
@@ -138,43 +148,54 @@ class _ProfileScreenState extends State<ProfileScreen> {
               GradientTextField(
                 controller: _nameController,
                 label: 'Имя',
-                suffixIcon: 'pen_small.svg',
+                suffixIcon: WebsafeSvg.asset(Assets.svg('pen_small.svg')),
               ),
               const SizedBox(
                 height: 8,
               ),
-              const GradientTextField(
+              GradientTextField(
                 label: 'Пол',
-                suffixIcon: 'refresh.svg',
-                initValue: 'Муржской',
+                suffixIcon: AnimatedRotation(
+                    turns: gender ? 1 : 0,
+                    duration: const Duration(milliseconds: 300),
+                    child: WebsafeSvg.asset(Assets.svg('refresh.svg'))),
+                initValue: gender ? 'Мужской' : 'Женский',
                 read0nly: true,
+                onTap: () {
+                  _changeRotation();
+                },
               ),
               const SizedBox(
                 height: 8,
               ),
-              const GradientTextField(
+              GradientTextField(
                 label: 'Дата рождения',
-                suffixIcon: 'pen_small.svg',
+                suffixIcon: WebsafeSvg.asset(Assets.svg('pen_small.svg')),
                 initValue: '31.08.2004',
-                read0nly: true,
+                keyboardType: TextInputType.number,
+                maskTextInputFormatter: [AppMasks().datetime],
               ),
               const SizedBox(
                 height: 8,
               ),
-              const GradientTextField(
+              GradientTextField(
                 label: 'Время рождения',
-                suffixIcon: 'pen_small.svg',
+                suffixIcon: WebsafeSvg.asset(Assets.svg('pen_small.svg')),
                 initValue: '15:15',
-                read0nly: true,
+                keyboardType: TextInputType.number,
+                maskTextInputFormatter: [AppMasks().time],
               ),
               const SizedBox(
                 height: 8,
               ),
-              const GradientTextField(
+              GradientTextField(
                 label: 'Статус отношений',
-                suffixIcon: 'arrow_right.svg',
+                suffixIcon: WebsafeSvg.asset(Assets.svg('arrow_right.svg')),
                 initValue: 'Женат',
                 read0nly: true,
+                onTap: () {
+                  Navigator.pushNamed(context, RouteNames.relationshipStatus);
+                },
               ),
             ],
           )),
@@ -196,9 +217,11 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 height: 16,
               ),
               ButtonWithIcon(
-                suffixIcon: 'arrow_right.svg',
+                suffixIcon: WebsafeSvg.asset(Assets.svg('arrow_right.svg')),
                 text: 'Не активен',
-                onTap: () {},
+                onTap: () {
+                  Navigator.pushNamed(context, RouteNames.prices);
+                },
               ),
             ],
           )),
@@ -220,7 +243,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 height: 16,
               ),
               ButtonWithIcon(
-                suffixIcon: 'arrow_right.svg',
+                suffixIcon: WebsafeSvg.asset(Assets.svg('arrow_right.svg')),
                 text: 'Конфиденциальность',
                 onTap: () {},
               ),
@@ -228,7 +251,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 height: 8,
               ),
               ButtonWithIcon(
-                suffixIcon: 'arrow_right.svg',
+                suffixIcon: WebsafeSvg.asset(Assets.svg('arrow_right.svg')),
                 text: 'Связаться с поддержкой',
                 onTap: () {},
               ),
