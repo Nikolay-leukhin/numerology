@@ -7,6 +7,7 @@ import 'package:numerology/utils/fonts.dart';
 import 'package:numerology/utils/gradients.dart';
 import 'package:numerology/widgets/buttons/gradient_button.dart';
 import 'package:numerology/widgets/containers/blue_gradient_container.dart';
+import 'package:numerology/widgets/custom_paint/matrix.dart';
 import 'package:websafe_svg/websafe_svg.dart';
 
 class HomePage extends StatefulWidget {
@@ -25,6 +26,7 @@ class _HomePageState extends State<HomePage> {
       height: 16,
     );
 
+    final size = MediaQuery.sizeOf(context);
     return SingleChildScrollView(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -70,6 +72,12 @@ class _HomePageState extends State<HomePage> {
               )),
           separator,
           BlueGradientContainer(
+            height: size.width * 0.87,
+              child: CustomPaint(
+            painter: Matrix(),
+          )),
+          separator,
+          BlueGradientContainer(
               child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
@@ -92,9 +100,7 @@ class _HomePageState extends State<HomePage> {
                 onTap: () {},
                 child: Ink(
                   decoration: const BoxDecoration(
-                    shape: BoxShape.circle,
-                    color: AppColors.darkBlue
-                  ),
+                      shape: BoxShape.circle, color: AppColors.darkBlue),
                   padding: const EdgeInsets.all(10),
                   child: WebsafeSvg.asset(Assets.svg("pen_big.svg"), width: 20),
                 ),
