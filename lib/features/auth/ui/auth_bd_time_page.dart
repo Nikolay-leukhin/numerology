@@ -58,7 +58,7 @@ class _AuthBirthdayPageState extends State<AuthTimePage> {
                             .authRepository
                             .user!
                             .birthday
-                            .copyWith(
+                            ?.copyWith(
                                 hour: newDate.hour, minute: newDate.minute);
                   },
                 )),

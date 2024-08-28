@@ -4,12 +4,17 @@ import 'package:numerology/features/prices/data/prices_repository.dart';
 import 'package:numerology/features/app/logic/app_cubit.dart';
 import 'package:numerology/features/auth/data/auth_repository.dart';
 import 'package:numerology/features/profile/data/profile_repository.dart';
+import 'package:numerology/services/local/preferences_service.dart';
+import 'package:numerology/services/remote/api/api_service.dart';
 
 import 'app.dart';
 import 'features/app/data/app_repository.dart';
 import 'features/auth/logic/auth_cubit.dart';
 import 'features/home/data/home_repository.dart';
 import 'features/home/logic/cubit/home_cubit.dart';
+
+final PreferencesService prefs = PreferencesService();
+final ApiService api = ApiService(preferencesService: prefs);
 
 class MyRepositoryProvider extends StatelessWidget {
   const MyRepositoryProvider({super.key});

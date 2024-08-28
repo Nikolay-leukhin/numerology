@@ -9,7 +9,6 @@ class SubscriptionModel {
     required this.descriptionList,
   });
 
-  // Для удобства, можно добавить метод fromJson, если планируется парсинг JSON
   factory SubscriptionModel.fromJson(Map<String, dynamic> json) {
     return SubscriptionModel(
       name: json['name'],
@@ -18,7 +17,6 @@ class SubscriptionModel {
     );
   }
 
-  // И метод toJson, если нужно будет сериализовать объект в JSON
   Map<String, dynamic> toJson() {
     return {
       'name': name,

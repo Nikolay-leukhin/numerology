@@ -54,7 +54,7 @@ class _AuthBirthdayPageState extends State<AuthBirthdayPage> {
                     context.read<AuthCubit>().authRepository.user!.birthday = context
                         .read<AuthCubit>().authRepository
                         .user!.birthday
-                        .copyWith(
+                        ?.copyWith(
                             day: newDate.day,
                             year: newDate.year,
                             month: newDate.month);
