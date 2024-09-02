@@ -194,7 +194,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 initValue: 'Женат',
                 read0nly: true,
                 onTap: () {
-                  Navigator.pushNamed(context, RouteNames.relationshipStatus);
+                  // Navigator.pushNamed(context, RouteNames.relationshipStatus);
                 },
               ),
             ],

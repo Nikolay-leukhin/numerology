@@ -27,8 +27,8 @@ class AppRoutes {
         return MaterialPageRoute(builder: (ctx) => const HomeScreen());
       case RouteNames.prices:
         return MaterialPageRoute(builder: (ctx) => const PricesScreen());
-      case RouteNames.relationshipStatus:
-        return MaterialPageRoute(builder: (ctx) => SetStatusScreen());
+      // case RouteNames.relationshipStatus:
+      //   return MaterialPageRoute(builder: (ctx) => SetStatusScreen());
       default:
         return MaterialPageRoute(builder: (ctx) => const AppStateWidget());
     }
