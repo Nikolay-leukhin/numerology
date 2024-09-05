@@ -7,12 +7,13 @@ class GradientButton extends StatelessWidget {
   final String text;
   final double width;
   final double height;
+  final double fontSize;
 
   const GradientButton(
       {super.key,
       required this.onTap,
       required this.text,
-      this.width = double.infinity,
+      this.width = double.infinity, this.fontSize = 24,
       required this.height});
 
   @override
@@ -36,7 +37,7 @@ class GradientButton extends StatelessWidget {
         ),
         child: Text(
           text,
-          style: AppFonts.f24w700.copyWith(color: AppColors.white),
+          style: AppFonts.f24w700.copyWith(color: AppColors.white, fontSize: fontSize),
         ),
       ),
     );

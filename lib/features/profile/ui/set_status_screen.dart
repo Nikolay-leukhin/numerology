@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:numerology/utils/Assets.dart';
 import 'package:numerology/utils/fonts.dart';
+import 'package:numerology/widgets/buttons/gradient_button.dart';
 import 'package:websafe_svg/websafe_svg.dart';
 
 import '../../../utils/enums.dart';
@@ -45,7 +46,7 @@ class _SetStatusScreenState extends State<SetStatusScreen> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   InkWell(
-                    onTap: (){
+                    onTap: () {
                       Navigator.pop(context);
                     },
                     child: WebsafeSvg.asset(
@@ -108,6 +109,13 @@ class _SetStatusScreenState extends State<SetStatusScreen> {
                   onClick: () {
                     selectStatus(RelationshipStatuses.engaged);
                   }),
+
+              const SizedBox(
+                height: 25,
+              ),
+              GradientButton(onTap: () {}, text: "Сохранить", height: 48, fontSize: 16,),
+
+              const SizedBox(height: 100,)
             ],
           ),
         ));
