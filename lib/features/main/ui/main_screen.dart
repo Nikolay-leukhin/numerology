@@ -1,5 +1,9 @@
 import 'package:expansion_widget/expansion_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:numerology/features/main/ui/widget/ability_name_widget.dart';
+import 'package:numerology/features/main/ui/widget/ability_number_widget.dart';
+import 'package:numerology/features/main/ui/widget/arkan_expansion_widget.dart';
+import 'package:numerology/features/main/ui/widget/arkan_position_widget.dart';
 import 'package:numerology/routes/route_names.dart';
 import 'package:numerology/utils/assets.dart';
 import 'package:numerology/utils/colors.dart';
@@ -32,8 +36,6 @@ class _MainScreenState extends State<MainScreen> {
           .map((letter) =>
               ArkanPoint(letter: letter, value: Random().nextInt(23)))
           .toList();
-
-  bool isExpanded = false;
 
   @override
   void initState() {
@@ -93,8 +95,6 @@ class _MainScreenState extends State<MainScreen> {
           separator,
           BlueGradientContainer(
               height: size.width * 0.87,
-              // width: size.width * 0.87,
-              // width: size.width * 0.87,
               child: Stack(children: [
                 Positioned(
                   top: 0,
@@ -107,9 +107,10 @@ class _MainScreenState extends State<MainScreen> {
                 ),
                 //  generation of value of arkan letters
                 ...arkanPointList
-                    .map((arkan) => getArkanPositionWidget(
-                        arkan, Size(size.width * 0.87, size.width * 0.87)))
-                    .toList()
+                    .map((arkan) => ArkanPositionWidget(
+                        arkan: arkan,
+                        containerSize:
+                            Size(size.width * 0.87, size.width * 0.87)))
 
                 //   --------
               ])),
@@ -172,411 +173,35 @@ class _MainScreenState extends State<MainScreen> {
             ],
           )),
           separator,
-          BlueGradientContainer(
-            child: ExpansionWidget(
-                titleBuilder: (double animationValue, _, bool isExpanded,
-                        toggleFunction) =>
-                    GestureDetector(
-                      onTap: () {
-                        toggleFunction(animated: true);
-                      },
-                      child: Column(
-                        mainAxisSize: MainAxisSize.min,
-                        children: [
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Text(
-                                "Основа личности",
-                                style: AppFonts.f20w700
-                                    .copyWith(color: AppColors.white),
-                              ),
-                              Icon(
-                                isExpanded
-                                    ? Icons.keyboard_arrow_up_rounded
-                                    : Icons.keyboard_arrow_down_rounded,
-                                color: Colors.white,
-                                size: 25,
-                              )
-                            ],
-                          ),
-                          const SizedBox(
-                            height: 24,
-                          ),
-                          isExpanded
-                              ? const SizedBox()
-                              : const Row(
-                                  children: [
-                                    AbilityNumberWidget(
-                                      number: 12,
-                                      color: Colors.yellow,
-                                    )
-                                  ],
-                                )
-                        ],
-                      ),
-                    ),
-                content: const Column(
-                  children: [
-                    AbilityNameWidget(),
-                    AbilityNameWidget(),
-                    AbilityNameWidget(),
-                    AbilityNameWidget(),
-                    AbilityNameWidget(),
-                    AbilityNameWidget(),
-                    AbilityNameWidget(),
-                  ],
-                )),
-          )
-        ],
-      ),
-    );
-  }
-
-  Widget getArkanPositionWidget(ArkanPoint arkan, Size containerSize) {
-    late int fontSize;
-    late double offsetX;
-    late double offsetY;
-    late bool xDirection;
-    late bool yDirection;
-    final double L = containerSize.height / 2;
-
-    switch (arkan.letter) {
-      case "A":
-        offsetX = -0.95;
-        offsetY = -0.013;
-        fontSize = 30;
-        break;
-      case "B":
-        offsetX = 0;
-        offsetY = -0.97;
-        fontSize = 30;
-        break;
-      case "C":
-        offsetX = 0.95;
-        offsetY = -0.013;
-        fontSize = 30;
-        break;
-      case "D":
-        offsetX = 0;
-        offsetY = 0.95;
-        fontSize = 30;
-        break;
-      case "E":
-        offsetX = 0;
-        offsetY = -0.013;
-        fontSize = 30;
-        break;
-      case "F":
-        offsetX = -0.675;
-        offsetY = -0.7;
-        fontSize = 30;
-        break;
-      case "G":
-        offsetX = 0.675;
-        offsetY = -0.7;
-        fontSize = 30;
-        break;
-      case "H":
-        offsetX = 0.675;
-        offsetY = 0.675;
-        fontSize = 30;
-        break;
-      case "I":
-        offsetX = -0.675;
-        offsetY = 0.675;
-        fontSize = 30;
-        break;
-      case "S":
-        offsetX = -0.285;
-        offsetY = -0.015;
-        fontSize = 15;
-        break;
-      case "T":
-        offsetX = 0;
-        offsetY = -0.3;
-        fontSize = 15;
-        break;
-      case "J":
-        offsetX = -0.455;
-        offsetY = -0.015;
-        fontSize = 20;
-        break;
-      case "O":
-        offsetX = -0.665;
-        offsetY = -0.02;
-        fontSize = 23;
-        break;
-      case "Q":
-        offsetX = 0.665;
-        offsetY = -0.02;
-        fontSize = 23;
-        break;
-      case "L":
-        offsetX = 0.455;
-        offsetY = -0.015;
-        fontSize = 20;
-        break;
-      case "M":
-        offsetX = 0;
-        offsetY = 0.44;
-        fontSize = 20;
-        break;
-      case "N":
-        offsetX = 0;
-        offsetY = 0.655;
-        fontSize = 23;
-        break;
-      case "P":
-        offsetX = 0;
-        offsetY = -0.675;
-        fontSize = 23;
-        break;
-      case "K":
-        offsetX = 0;
-        offsetY = -0.47;
-        fontSize = 20;
-        break;
-      case "F1":
-        offsetX = -0.465;
-        offsetY = -0.49;
-        fontSize = 23;
-        break;
-      case "G1":
-        offsetX = 0.475;
-        offsetY = -0.49;
-        fontSize = 23;
-        break;
-      case "H1":
-        offsetX = 0.475;
-        offsetY = 0.46;
-        fontSize = 23;
-        break;
-      case "I1":
-        offsetX = -0.475;
-        offsetY = 0.46;
-        fontSize = 23;
-        break;
-      case "I2":
-        offsetX = -0.32;
-        offsetY = 0.319;
-        fontSize = 18;
-        break;
-      case "F2":
-        offsetX = -0.32;
-        offsetY = -0.339;
-        fontSize = 18;
-        break;
-      case "G2":
-        offsetX = 0.32;
-        offsetY = -0.339;
-        fontSize = 18;
-        break;
-      case "H2":
-        offsetX = 0.34;
-        offsetY = 0.32;
-        fontSize = 18;
-        break;
-      case "L1":
-        offsetX = 0.18;
-        offsetY = -0.013;
-        fontSize = 16;
-        break;
-      case "L2":
-        offsetX = 0.3;
-        offsetY = -0.013;
-        fontSize = 16;
-        break;
-      case "R2":
-        offsetX = 0.275;
-        offsetY = 0.132;
-        fontSize = 14;
-        break;
-      case "R1":
-        offsetX = 0.15;
-        offsetY = 0.26;
-        fontSize = 14;
-        break;
-      case "R":
-        offsetX = 0.215;
-        offsetY = 0.195;
-        fontSize = 14;
-        break;
-      default:
-        offsetX = 0;
-        offsetY = 0;
-        fontSize = 10;
-    }
-
-    return Align(
-        alignment: Alignment(offsetX, offsetY),
-        child: Container(
-          alignment: Alignment.center,
-          width: fontSize / 430 * MediaQuery.sizeOf(context).width,
-          height: fontSize / 430 * MediaQuery.sizeOf(context).width,
-          child: FittedBox(
-            child: Text(
-              arkan.value.toString(),
-              maxLines: 1,
-              textAlign: TextAlign.center,
-              style: AppFonts.f10w600
-                  .copyWith(color: Colors.white, fontSize: fontSize.toDouble()),
-            ),
+          ArkanExpansionWidget(
+            title: "Основа личности",
           ),
-        ));
-  }
-}
-
-class AbilityNameWidget extends StatelessWidget {
-  const AbilityNameWidget({
-    super.key,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    final size = MediaQuery.sizeOf(context);
-
-    return GestureDetector(
-      onTap: () {
-        showModalBottomSheet(
-            context: context,
-            builder: (context) => Container(
-                  width: double.infinity,
-                  padding:
-                      const EdgeInsets.symmetric(horizontal: 16, vertical: 12)
-                          .copyWith(bottom: 0),
-                  decoration: const BoxDecoration(
-                      gradient: AppGradients.purpleToBlue,
-                      borderRadius:
-                          BorderRadius.vertical(top: Radius.circular(16))),
-                  child: SingleChildScrollView(
-                    child: Column(
-                      mainAxisSize: MainAxisSize.min,
-                      crossAxisAlignment: CrossAxisAlignment.stretch,
-                      children: [
-                        Container(
-                          width: size.width - 32,
-                          padding: const EdgeInsets.all(14),
-                          decoration: BoxDecoration(
-                              color: AppColors.darkBlue,
-                              borderRadius: BorderRadius.circular(16),
-                              border: Border.all(
-                                  width: 2, color: AppColors.deepOcean)),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            children: [
-                              const AbilityNumberWidget(
-                                  number: 12, color: Colors.yellow),
-                              const SizedBox(
-                                width: 12,
-                              ),
-                              Flexible(
-                                child: Text(
-                                  "Предназначения личности",
-                                  style: AppFonts.f24w700.copyWith(
-                                      color: AppColors.white, height: 1),
-                                ),
-                              )
-                            ],
-                          ),
-                        ),
-                        const SizedBox(
-                          height: 44,
-                        ),
-                        Text(
-                          "Энергия",
-                          style:
-                              AppFonts.f20w700.copyWith(color: AppColors.white),
-                        ),
-                        Text(
-                          "Зона комфорта. Точка силы, являющаяся самой важной в матрице. Она показывает, через что человек может реализовываться в социуме наиболее эффективно и комфортно для себя.",
-                          style:
-                              AppFonts.f16w400.copyWith(color: AppColors.white),
-                        ),
-                        const SizedBox(
-                          height: 32,
-                        ),
-                        Text(
-                          "Описание аркана",
-                          style:
-                              AppFonts.f20w700.copyWith(color: AppColors.white),
-                        ),
-                        Text(
-                          "Человек с 12 арканом обычно переживает сложные жизненные ситуации, наполненные испытаниями и жертвами. Его уникальный взгляд на мир часто не понимают окружающие. Однако он обладает способностью глубоко понимать других и всегда готов прийти на помощь. Это человек, который готов на жертвы ради своей цели или из сострадания. Он также обладает творческим даром и может осуществить себя в различных областях искусства. Но благополучие такого человека зависит от того, находится ли его энергия в положительном или отрицательном состоянии."
-                                  "В положительном состоянии человек с 12 арканом обладает уникальным взглядом на мир, который иногда кажется другим, будто он не от мира сего. Его рассуждения и мировоззрение сложно понять, но он часто замечается за советами. Он также очень сострадателен и милосерден, всегда готовый п" *
-                              5,
-                          style:
-                              AppFonts.f16w400.copyWith(color: AppColors.white),
-                        ),
-                      ],
-                    ),
-                  ),
-                ));
-      },
-      child: Container(
-        margin: const EdgeInsets.only(bottom: 8),
-        padding: const EdgeInsets.all(12),
-        decoration: BoxDecoration(
-            color: AppColors.darkBlue,
-            borderRadius: BorderRadius.circular(16),
-            border: Border.all(width: 2, color: AppColors.deepOcean)),
-        child: Row(
-          children: [
-            const AbilityNumberWidget(
-              color: Colors.yellow,
-              number: 12,
-            ),
-            const SizedBox(
-              width: 12,
-            ),
-            Text(
-              "Кто я?",
-              style: AppFonts.f20w700.copyWith(color: AppColors.white),
-            ),
-            const Spacer(),
-            InkWell(
-              borderRadius: BorderRadius.circular(500),
-              onTap: () {},
-              child: Ink(
-                decoration: const BoxDecoration(shape: BoxShape.circle),
-                padding: const EdgeInsets.all(6),
-                child: const Icon(
-                  Icons.arrow_forward_ios_rounded,
-                  size: 20,
-                  color: AppColors.white,
-                ),
-              ),
-            )
-          ],
-        ),
-      ),
-    );
-  }
-}
-
-class AbilityNumberWidget extends StatelessWidget {
-  final int number;
-  final Color color;
-
-  const AbilityNumberWidget({
-    super.key,
-    required this.number,
-    required this.color,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      height: 44,
-      width: 44,
-      alignment: Alignment.center,
-      margin: const EdgeInsets.only(right: 8),
-      decoration: BoxDecoration(
-          shape: BoxShape.circle, border: Border.all(width: 2, color: color)),
-      child: Text(
-        number.toString(),
-        style: AppFonts.f20w700.copyWith(color: AppColors.white),
+          separator,
+          ArkanExpansionWidget(
+            title: "Предназначения личности",
+          ),
+          separator,
+          ArkanExpansionWidget(
+            title: "Романтические отношения",
+          ),
+          separator,
+          ArkanExpansionWidget(
+            title: "Финансы",
+          ),
+          separator,
+          ArkanExpansionWidget(
+            title: "Отношения с семьей",
+          ),
+          separator,
+          ArkanExpansionWidget(
+            title: "Отношения с окружением",
+          ),
+          separator,
+          ArkanExpansionWidget(
+            title: "Карма прошлой жизни",
+          ),
+          separator,
+        ],
       ),
     );
   }
