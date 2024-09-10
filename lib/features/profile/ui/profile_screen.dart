@@ -1,8 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:numerology/routes/routes.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:numerology/features/profile/data/profile_repository.dart';
+import 'package:numerology/features/profile/logic/user_cubit.dart';
+import 'package:numerology/models/user.dart';
 import 'package:numerology/utils/assets.dart';
 import 'package:numerology/utils/colors.dart';
+import 'package:numerology/utils/enums.dart';
 import 'package:numerology/utils/fonts.dart';
+import 'package:numerology/utils/functions.dart';
 import 'package:numerology/utils/mask_text_formatter.dart';
 import 'package:numerology/widgets/buttons/button_with_icon.dart';
 import 'package:numerology/widgets/containers/blue_gradient_container.dart';
@@ -20,8 +25,12 @@ class ProfileScreen extends StatefulWidget {
 }
 
 class _ProfileScreenState extends State<ProfileScreen> {
-  final TextEditingController _nameController =
-      TextEditingController(text: 'Александр');
+  final FocusNode _focusName = FocusNode();
+  final FocusNode _focusDate = FocusNode();
+
+  final TextEditingController _nameController = TextEditingController();
+  final TextEditingController _dateController = TextEditingController();
+
   bool gender = true;
 
   void _changeRotation() {
@@ -29,8 +38,66 @@ class _ProfileScreenState extends State<ProfileScreen> {
   }
 
   @override
+  void initState() {
+    final ProfileRepository profileRepository =
+        RepositoryProvider.of<ProfileRepository>(context);
+
+    _nameController.text = profileRepository.user?.name ?? '';
+    _dateController.text = AppFunctions().applyDateMask(
+        profileRepository.user!.birthday!.day,
+        profileRepository.user!.birthday!.month,
+        profileRepository.user!.birthday!.year);
+
+    _focusName.addListener(_onFocusChangeName);
+    _focusDate.addListener(_onFocusChangeDate);
+
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    _focusName.removeListener(_onFocusChangeName);
+    _focusDate.removeListener(_onFocusChangeDate);
+    _focusName.dispose();
+  }
+
+  void _onFocusChangeName() {
+    setState(() {});
+    if (!_focusName.hasFocus) {
+      UserModel user = RepositoryProvider.of<ProfileRepository>(context).user!;
+
+      user.name = _nameController.text;
+
+      RepositoryProvider.of<ProfileRepository>(context).updateUserData(user);
+    }
+  }
+
+  void _onFocusChangeDate() {
+    setState(() {});
+    if (!_focusDate.hasFocus) {
+      UserModel user = RepositoryProvider.of<ProfileRepository>(context).user!;
+
+      if (AppFunctions().checkDateTime(_dateController.text)) {
+        user.birthday = user.birthday?.copyWith(
+            day: DateTime.now().day,
+            year: DateTime.now().year,
+            month: DateTime.now().month);
+
+        RepositoryProvider.of<ProfileRepository>(context).updateUserData(user);
+      } else {
+        print('h');
+        setState(() {});
+      }
+    }
+  }
+
+  @override
   Widget build(BuildContext context) {
     final width = MediaQuery.sizeOf(context).width;
+
+    final ProfileRepository profileRepository =
+        RepositoryProvider.of<ProfileRepository>(context);
 
     return SingleChildScrollView(
       child: Column(
@@ -64,7 +131,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Text(
-                        'Александр',
+                        profileRepository.user?.name ?? '',
                         style:
                             AppFonts.f20w700.copyWith(color: AppColors.white),
                       ),
@@ -72,7 +139,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
                           Text(
-                            'Мужчина',
+                            AppFunctions().getGenderByEnum(
+                                profileRepository.user?.gender ?? Genders.male),
                             style: AppFonts.f12w500
                                 .copyWith(color: AppColors.lightGrey),
                           ),
@@ -131,74 +199,111 @@ class _ProfileScreenState extends State<ProfileScreen> {
           const SizedBox(
             height: 16,
           ),
-          BlueGradientContainer(
-              child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Padding(
-                padding: const EdgeInsets.only(left: 10),
-                child: Text(
-                  'Ваши данные',
-                  style: AppFonts.f20w700,
-                ),
-              ),
-              const SizedBox(
-                height: 16,
-              ),
-              GradientTextField(
-                controller: _nameController,
-                label: 'Имя',
-                suffixIcon: WebsafeSvg.asset(Assets.svg('pen_small.svg')),
-              ),
-              const SizedBox(
-                height: 8,
-              ),
-              GradientTextField(
-                label: 'Пол',
-                suffixIcon: AnimatedRotation(
-                    turns: gender ? 1 : 0,
-                    duration: const Duration(milliseconds: 300),
-                    child: WebsafeSvg.asset(Assets.svg('refresh.svg'))),
-                initValue: gender ? 'Мужской' : 'Женский',
-                read0nly: true,
-                onTap: () {
-                  _changeRotation();
-                },
-              ),
-              const SizedBox(
-                height: 8,
-              ),
-              GradientTextField(
-                label: 'Дата рождения',
-                suffixIcon: WebsafeSvg.asset(Assets.svg('pen_small.svg')),
-                initValue: '31.08.2004',
-                keyboardType: TextInputType.number,
-                maskTextInputFormatter: [AppMasks().datetime],
-              ),
-              const SizedBox(
-                height: 8,
-              ),
-              GradientTextField(
-                label: 'Время рождения',
-                suffixIcon: WebsafeSvg.asset(Assets.svg('pen_small.svg')),
-                initValue: '15:15',
-                keyboardType: TextInputType.number,
-                maskTextInputFormatter: [AppMasks().time],
-              ),
-              const SizedBox(
-                height: 8,
-              ),
-              GradientTextField(
-                label: 'Статус отношений',
-                suffixIcon: WebsafeSvg.asset(Assets.svg('arrow_right.svg')),
-                initValue: 'Женат',
-                read0nly: true,
-                onTap: () {
-                  Navigator.pushNamed(context, RouteNames.profileRelationship);
-                },
-              ),
-            ],
-          )),
+          BlocBuilder<UserCubit, UserState>(
+            builder: (context, state) {
+              return BlueGradientContainer(
+                  child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.only(left: 10),
+                    child: Text(
+                      'Ваши данные',
+                      style: AppFonts.f20w700,
+                    ),
+                  ),
+                  const SizedBox(
+                    height: 16,
+                  ),
+                  GradientTextField(
+                    controller: _nameController,
+                    label: 'Имя',
+                    isActive: _focusName.hasFocus,
+                    focus: _focusName,
+                    onSave: () {
+                      UserModel user =
+                          RepositoryProvider.of<ProfileRepository>(context)
+                              .user!;
+
+                      user.name = _nameController.text;
+
+                      RepositoryProvider.of<ProfileRepository>(context)
+                          .updateUserData(user);
+                    },
+                    suffixIcon: WebsafeSvg.asset(Assets.svg('pen_small.svg')),
+                  ),
+                  const SizedBox(
+                    height: 8,
+                  ),
+                  GradientTextField(
+                    label: 'Пол',
+                    suffixIcon: AnimatedRotation(
+                        turns: gender ? 1 : 0,
+                        duration: const Duration(milliseconds: 300),
+                        child: WebsafeSvg.asset(Assets.svg('refresh.svg'))),
+                    initValue: AppFunctions().getGenderByEnum(
+                        profileRepository.user?.gender ?? Genders.male),
+                    read0nly: true,
+                    onTap: () {
+                      _changeRotation();
+
+                      UserModel user =
+                          RepositoryProvider.of<ProfileRepository>(context)
+                              .user!;
+
+                      user.gender =
+                          AppFunctions().getDifferentGender(user.gender);
+
+                      RepositoryProvider.of<ProfileRepository>(context)
+                          .updateUserData(user);
+                    },
+                  ),
+                  const SizedBox(
+                    height: 8,
+                  ),
+                  GradientTextField(
+                    controller: _dateController,
+                    focus: _focusDate,
+                    label: 'Дата рождения',
+                    isActive: _focusDate.hasFocus,
+                    suffixIcon: WebsafeSvg.asset(Assets.svg('pen_small.svg')),
+                    onSave: () {
+                      UserModel user =
+                          RepositoryProvider.of<ProfileRepository>(context)
+                              .user!;
+
+                      if (!AppFunctions().checkDateTime(_dateController.text)) {
+                        user.birthday?.copyWith(
+                            day: DateTime.now().day,
+                            year: DateTime.now().year,
+                            month: DateTime.now().month);
+
+                        RepositoryProvider.of<ProfileRepository>(context)
+                            .updateUserData(user);
+                      } else {
+                        setState(() {});
+                      }
+                    },
+                    keyboardType: TextInputType.datetime,
+                    maskTextInputFormatter: [AppMasks().datetime],
+                  ),
+                  const SizedBox(
+                    height: 8,
+                  ),
+                  GradientTextField(
+                    label: 'Статус отношений',
+                    suffixIcon: WebsafeSvg.asset(Assets.svg('arrow_right.svg')),
+                    initValue: 'Женат',
+                    read0nly: true,
+                    onTap: () {
+                      Navigator.pushNamed(
+                          context, RouteNames.profileRelationship);
+                    },
+                  ),
+                ],
+              ));
+            },
+          ),
           const SizedBox(
             height: 12,
           ),

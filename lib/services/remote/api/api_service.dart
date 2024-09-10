@@ -2,7 +2,9 @@ import 'dart:developer';
 
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:dio/dio.dart';
+import 'package:numerology/models/user.dart';
 import 'package:numerology/services/local/preferences_service.dart';
+import 'package:numerology/services/remote/api/user.dart';
 import 'package:numerology/services/remote/constants/api_endpoints.dart';
 import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 
@@ -27,7 +29,8 @@ class ApiService {
   final Dio dio = Dio(dioOptions)..interceptors.add(PrettyDioLogger());
 
   late final String token;
-  late final Auth auth;
+  late final AuthService auth;
+  late final UserService user;
 
   ApiService({required this.preferencesService}) {
     initialServices();
@@ -36,11 +39,10 @@ class ApiService {
   String getJwt() => dio.options.headers['Authorization'];
 
   void initialServices() async {
-    token = await preferencesService.getToken() ?? '';
+    token = '';
 
-    log(token);
-
-    auth = Auth(dio_: dio, preferences: preferencesService, token: token);
+    auth = AuthService(dio_: dio, preferences: preferencesService, token: token);
+    user = UserService(dio_: dio, preferences: preferencesService, token: token);
 
     auth.refreshToken(token);
   }

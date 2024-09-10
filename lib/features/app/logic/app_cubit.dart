@@ -22,7 +22,7 @@ class AppCubit extends Cubit<AppState> {
   void subscribe() {
     _authRepository.appState.stream.listen((event) async {
       if (event == AppAuthStateEnum.auth) {
-        // _profileRepository.setUser(_authRepository.user!);
+        _profileRepository.setUser(_authRepository.user);
 
         emit(AppAuthState());
       }

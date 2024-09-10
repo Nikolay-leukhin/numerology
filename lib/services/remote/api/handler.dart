@@ -5,7 +5,7 @@ enum Methods { get, post, delete }
 mixin class ApiHandler {
   late final Dio dio;
   late final PreferencesService preferencesService;
-  late final String currentToken;
+  late  String currentToken = '';
 
   _errorHandler(
       {required Methods method,
@@ -58,7 +58,7 @@ mixin class ApiHandler {
 
     dio.options.headers = {
       'Content-Type': 'application/json',
-      'Authorization': 'Bearer: $currentToken'
+      'Authorization': 'Bearer $currentToken'
     };
   }
 }

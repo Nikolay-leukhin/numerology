@@ -9,7 +9,7 @@ import 'package:numerology/utils/gradients.dart';
 import 'package:websafe_svg/websafe_svg.dart';
 
 class GradientTextField extends StatelessWidget {
-  const GradientTextField(
+  GradientTextField(
       {super.key,
       this.validator,
       this.controller,
@@ -21,7 +21,9 @@ class GradientTextField extends StatelessWidget {
       this.read0nly = false,
       required this.suffixIcon,
       this.maskTextInputFormatter,
-      this.onSave});
+      this.onSave,
+      this.focus,
+      this.isActive = false});
 
   final String? Function(String?)? validator;
   final TextEditingController? controller;
@@ -35,6 +37,8 @@ class GradientTextField extends StatelessWidget {
   final bool read0nly;
   final Widget suffixIcon;
   final List<TextInputFormatter>? maskTextInputFormatter;
+  final FocusNode? focus;
+  bool isActive;
 
   @override
   Widget build(BuildContext context) {
@@ -63,9 +67,13 @@ class GradientTextField extends StatelessWidget {
                   height: 30,
                   width: width - 160,
                   child: TextFormField(
-                    onTap: () {
-                      print('qef');
+                    focusNode: focus,
+                    onFieldSubmitted: (s) {
+                      onSave!();
+
+                      isActive = false;
                     },
+                    onTap: () {},
                     key: Key(initValue.toString()),
                     textAlign: TextAlign.start,
                     onChanged: onChange,
@@ -96,7 +104,10 @@ class GradientTextField extends StatelessWidget {
               child: CircleAvatar(
                 backgroundColor: AppColors.lightBlue,
                 radius: 25,
-                child: suffixIcon,
+                child: !isActive
+                    ? suffixIcon
+                    : WebsafeSvg.asset(
+                        Assets.svg('mingcute_check-fill.svg')),
               ),
             )
           ],

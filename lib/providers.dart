@@ -4,6 +4,7 @@ import 'package:numerology/features/prices/data/prices_repository.dart';
 import 'package:numerology/features/app/logic/app_cubit.dart';
 import 'package:numerology/features/auth/data/auth_repository.dart';
 import 'package:numerology/features/profile/data/profile_repository.dart';
+import 'package:numerology/features/profile/logic/user_cubit.dart';
 import 'package:numerology/services/local/preferences_service.dart';
 import 'package:numerology/services/remote/api/api_service.dart';
 
@@ -25,8 +26,12 @@ class MyRepositoryProvider extends StatelessWidget {
       RepositoryProvider(create: (context) => AppRepository()),
       RepositoryProvider(create: (context) => HomeRepository()),
       RepositoryProvider(create: (context) => PricesRepository()),
-      RepositoryProvider(create: (context) => AuthRepository()),
-      RepositoryProvider(create: (context) => ProfileRepository()),
+      RepositoryProvider(
+          create: (context) => AuthRepository(
+              authService: api.auth,
+              userService: api.user,
+              preferencesService: prefs)),
+      RepositoryProvider(create: (context) => ProfileRepository(userService: api.user)),
     ], child: MyBlocProvider());
   }
 }
@@ -48,6 +53,10 @@ class MyBlocProvider extends StatelessWidget {
           lazy: false,
         ),
         BlocProvider(
+          create: (context) => UserCubit(profileRepository: profileRepository),
+          lazy: false,
+        ),
+        BlocProvider(
           create: (context) => AuthCubit(authRepository: authRepository),
           lazy: false,
         ),
@@ -56,7 +65,7 @@ class MyBlocProvider extends StatelessWidget {
           lazy: false,
         ),
       ],
-      child:  MyApp(),
+      child: MyApp(),
     );
   }
 }

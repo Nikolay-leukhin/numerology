@@ -1,38 +1,52 @@
 import 'package:numerology/utils/utils.dart';
 
 class UserModel {
-  String id;
+  int? id;
+  int tgId;
   String name;
   DateTime? birthday;
-  Genders? gender;
-  RelationshipStatuses? status;
+  Genders gender;
+  RelationshipStatuses status;
+  SubscriptionType subscriptionType;
 
   UserModel(
-      {required this.id,
-      required this.name,
-      required this.birthday,
-      required this.gender,
-      required this.status});
+      {this.tgId = 0,
+      this.name = ' ',
+      this.id,
+      this.birthday,
+      this.gender = Genders.male,
+      this.status = RelationshipStatuses.none,
+      this.subscriptionType = SubscriptionType.none}) {
+    birthday ??= DateTime.now();
+  }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = <String, dynamic>{};
-    data['id'] = id;
+    data['tgId'] = tgId;
     data['name'] = name;
-    data['birthday'] = birthday;
-    data['gender'] = gender;
-    data['status'] = name;
+    data['birthday'] = '${birthday.toString().split(' ').join('T')}Z';
+    data['gender'] = gender.index + 1;
+    data['status'] = status.index + 1;
+    data['subscriptionType'] = subscriptionType.index + 1;
+    data['entityStatus'] = 1;
+    if(id != null) {
+      data['id'] = id;
+    }
 
     return data;
   }
 
   factory UserModel.fromJson(Map<String, dynamic> json) {
     return UserModel(
+        tgId: json['tgId'],
         id: json['id'],
         name: json['name'],
         birthday: json["birthday"] == null
             ? null
-            : DateTime.tryParse(json["date_birth"]),
-        gender: json['gender'],
-        status: json['status']);
+            : DateTime.tryParse(json["birthday"].toString().split('T').join(' ')),
+        gender: Genders.values[json['gender'] - 1],
+        status: RelationshipStatuses.values[json['status'] - 1],
+        subscriptionType:
+            SubscriptionType.values[json['subscriptionType'] - 1]);
   }
 }

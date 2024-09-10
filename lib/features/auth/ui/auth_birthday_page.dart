@@ -15,6 +15,21 @@ class AuthBirthdayPage extends StatefulWidget {
 
 class _AuthBirthdayPageState extends State<AuthBirthdayPage> {
   @override
+  void initState() {
+    super.initState();
+
+    context.read<AuthCubit>().authRepository.user.birthday = context
+        .read<AuthCubit>()
+        .authRepository
+        .user
+        .birthday
+        ?.copyWith(
+            day: DateTime.now().day,
+            year: DateTime.now().year,
+            month: DateTime.now().month);
+  }
+
+  @override
   Widget build(BuildContext context) {
     final size = MediaQuery.sizeOf(context);
 
@@ -51,13 +66,16 @@ class _AuthBirthdayPageState extends State<AuthBirthdayPage> {
                   mode: CupertinoDatePickerMode.date,
                   use24hFormat: true,
                   onDateTimeChanged: (DateTime newDate) {
-                    context.read<AuthCubit>().authRepository.user!.birthday = context
-                        .read<AuthCubit>().authRepository
-                        .user!.birthday
-                        ?.copyWith(
-                            day: newDate.day,
-                            year: newDate.year,
-                            month: newDate.month);
+                    context.read<AuthCubit>().authRepository.user.birthday =
+                        context
+                            .read<AuthCubit>()
+                            .authRepository
+                            .user
+                            .birthday
+                            ?.copyWith(
+                                day: newDate.day,
+                                year: newDate.year,
+                                month: newDate.month);
                   },
                 )),
           ),

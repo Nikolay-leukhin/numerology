@@ -29,25 +29,5 @@ class PreferencesService {
     }
   }
 
-
-  Future<void> setUser(UserModel rawUser) async {
-    final prefs = await _prefs;
-    final String user = jsonEncode(rawUser.toJson());
-    prefs.setString(_userKey, user);
-  }
-
-  Future<UserModel?> getUser() async {
-    final prefs = await _prefs;
-    final rawUser = prefs.getString(_userKey);
-    if (rawUser == null) {
-      return null;
-    }
-    print('-------------');
-    print(rawUser);
-    print('-----------');
-    final UserModel user = UserModel.fromJson(jsonDecode(rawUser));
-    return user;
-  }
-
   Future logout() async => (await _prefs).clear();
 }

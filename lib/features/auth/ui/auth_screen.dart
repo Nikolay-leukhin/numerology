@@ -1,7 +1,7 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:numerology/features/auth/data/auth_repository.dart';
 import 'package:numerology/features/auth/ui/auth_bd_time_page.dart';
 import 'package:numerology/features/auth/ui/auth_birthday_page.dart';
 import 'package:numerology/features/auth/ui/auth_gender.dart';
@@ -9,7 +9,6 @@ import 'package:numerology/features/auth/ui/auth_name_page.dart';
 import 'package:numerology/features/auth/ui/auth_status.dart';
 import 'package:numerology/utils/utils.dart';
 import 'package:numerology/widgets/buttons/filled_button.dart';
-import 'package:numerology/widgets/buttons/outline_button.dart';
 import 'package:numerology/widgets/scaffold/custom_scaffold.dart';
 
 import '../logic/auth_cubit.dart';
@@ -38,6 +37,7 @@ class _AuthScreenState extends State<AuthScreen> {
       context.read<AuthCubit>().registerUser();
       return;
     }
+
     currentPageIndex += 1;
     _pageController.animateTo(
         MediaQuery.of(context).size.width * currentPageIndex,
@@ -61,6 +61,8 @@ class _AuthScreenState extends State<AuthScreen> {
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.sizeOf(context);
+
+    final authRepository = RepositoryProvider.of<AuthRepository>(context);
 
     return CustomScaffold(
       padding: const EdgeInsets.all(0),
@@ -127,18 +129,21 @@ class _AuthScreenState extends State<AuthScreen> {
           physics: const NeverScrollableScrollPhysics(),
           scrollDirection: Axis.horizontal,
           children: [
-            AuthEnterNamePage(),
-            AuthBirthdayPage(),
-            AuthTimePage(),
-            AuthGenderPage(),
-            AuthStatusPage()
+            AuthEnterNamePage(
+              onChange: (newName) {
+                authRepository.user.name = newName;
+              },
+            ),
+            const AuthBirthdayPage(),
+            const AuthTimePage(),
+            const AuthGenderPage(),
+            const AuthStatusPage()
           ]),
       bottomNavBar: Padding(
         padding: const EdgeInsets.all(20),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-
             MyFilledButton(
               onTap: () {
                 nextPage();

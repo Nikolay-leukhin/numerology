@@ -4,9 +4,10 @@ import 'package:numerology/utils/utils.dart';
 import 'widgets/description_text_widget.dart';
 
 class AuthEnterNamePage extends StatelessWidget {
-  const AuthEnterNamePage({
-    super.key,
-  });
+  AuthEnterNamePage({super.key, required this.onChange});
+
+  final nameController = TextEditingController();
+  final Function(String) onChange;
 
   @override
   Widget build(BuildContext context) {
@@ -23,6 +24,8 @@ class AuthEnterNamePage extends StatelessWidget {
             height: 32,
           ),
           TextField(
+            controller: nameController,
+            onChanged: onChange,
             style: AppFonts.f20w600.copyWith(color: AppColors.white),
             decoration: InputDecoration(
               enabledBorder: OutlineInputBorder(
