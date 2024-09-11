@@ -4,6 +4,7 @@ import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:dio/dio.dart';
 import 'package:numerology/models/user.dart';
 import 'package:numerology/services/local/preferences_service.dart';
+import 'package:numerology/services/remote/api/arkan.dart';
 import 'package:numerology/services/remote/api/subs.dart';
 import 'package:numerology/services/remote/api/user.dart';
 import 'package:numerology/services/remote/constants/api_endpoints.dart';
@@ -33,6 +34,7 @@ class ApiService {
   late final AuthService auth;
   late final UserService user;
   late final SubsService subs;
+  late final ArkanService arkan;
 
   ApiService({required this.preferencesService}) {
     initialServices();
@@ -46,6 +48,7 @@ class ApiService {
     auth = AuthService(dio_: dio, preferences: preferencesService, token: token);
     user = UserService(dio_: dio, preferences: preferencesService, token: token);
     subs = SubsService(dio_: dio, preferences: preferencesService, token: token);
+    arkan = ArkanService(dio_: dio, preferences: preferencesService, token: token);
 
     auth.refreshToken(token);
   }

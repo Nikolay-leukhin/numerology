@@ -22,12 +22,12 @@ class AuthRepository {
 
   AuthRepository({required this.authService, required this.userService, required this.preferencesService}) {
     _checkIsAuthorize();
-    user.tgId = tgUser?.user?.id ?? 666112;
+    user.tgId = tgUser?.user?.id ?? 666116;
   }
 
   void _checkIsAuthorize() async {
     var res = (await authService
-        .checkUserRegister(tgUser == null ? 666112 : tgUser!.user!.id));
+        .checkUserRegister(tgUser == null ? 666116 : tgUser!.user!.id));
 
     if (res['register']) {
       user = UserModel.fromJson(await userService.getUser());
@@ -39,10 +39,9 @@ class AuthRepository {
   }
 
   void registerWithTgId() async {
-    print(user.toJson());
+
     var res = (await authService.registerUser(user));
     (await preferencesService.getToken());
-    print(user.toJson());
 
     user = UserModel.fromJson((await userService.getUser()));
     print(user.toJson());

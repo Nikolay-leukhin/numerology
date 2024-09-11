@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:numerology/utils/utils.dart';
 
+import '../../../../models/arkan_point.dart';
 import '../main_screen.dart';
 
 class ArkanPositionWidget extends StatelessWidget {

@@ -1,10 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:numerology/features/main/ui/widget/ability_number_widget.dart';
+import 'package:numerology/features/main/ui/widget/arkan_expansion_widget.dart';
+import 'package:numerology/models/arkan_category.dart';
+import 'package:numerology/models/arkan_point.dart';
 import 'package:numerology/utils/utils.dart';
 
 class AbilityNameWidget extends StatelessWidget {
+  final ArkanPoint arkan;
+  final List letters;
   const AbilityNameWidget({
     super.key,
+    required this.arkan,
+    required this.letters
   });
 
   @override
@@ -65,7 +72,7 @@ class AbilityNameWidget extends StatelessWidget {
                       AppFonts.f20w700.copyWith(color: AppColors.white),
                     ),
                     Text(
-                      "Зона комфорта. Точка силы, являющаяся самой важной в матрице. Она показывает, через что человек может реализовываться в социуме наиболее эффективно и комфортно для себя.",
+                      letters.where((e) => e.enumLetter == arkan.letter).first.energy,
                       style:
                       AppFonts.f16w400.copyWith(color: AppColors.white),
                     ),
@@ -98,9 +105,9 @@ class AbilityNameWidget extends StatelessWidget {
             border: Border.all(width: 2, color: AppColors.deepOcean)),
         child: Row(
           children: [
-            const AbilityNumberWidget(
-              color: Colors.yellow,
-              number: 12,
+             AbilityNumberWidget(
+              color: colorList[arkan.value],
+              number: arkan.value,
             ),
             const SizedBox(
               width: 12,

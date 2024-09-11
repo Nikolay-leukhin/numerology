@@ -13,6 +13,7 @@ import 'features/app/data/app_repository.dart';
 import 'features/auth/logic/auth_cubit.dart';
 import 'features/home/data/home_repository.dart';
 import 'features/home/logic/cubit/home_cubit.dart';
+import 'features/main/data/arkan_repository.dart';
 import 'features/prices/bloc/subs_cubit.dart';
 
 final PreferencesService prefs = PreferencesService();
@@ -26,6 +27,8 @@ class MyRepositoryProvider extends StatelessWidget {
     return MultiRepositoryProvider(providers: [
       RepositoryProvider(create: (context) => AppRepository()),
       RepositoryProvider(create: (context) => HomeRepository()),
+      RepositoryProvider(
+          create: (context) => ArkanRepository(arkanApi: api.arkan)),
       RepositoryProvider(create: (context) => PricesRepository(api: api.subs)),
       RepositoryProvider(
           create: (context) => AuthRepository(
@@ -49,6 +52,8 @@ class MyBlocProvider extends StatelessWidget {
         RepositoryProvider.of<ProfileRepository>(context);
     PricesRepository pricesRepository =
         RepositoryProvider.of<PricesRepository>(context);
+    ArkanRepository arkanRepository =
+        RepositoryProvider.of<ArkanRepository>(context);
 
     return MultiBlocProvider(
       providers: [
@@ -65,13 +70,14 @@ class MyBlocProvider extends StatelessWidget {
           lazy: false,
         ),
         BlocProvider(
-          create: (context) => AppCubit(authRepository, profileRepository),
+          create: (context) => AppCubit(authRepository, profileRepository, arkanRepository),
           lazy: false,
         ),
         BlocProvider(
           create: (context) => SubsCubit(pricesRepository),
           lazy: false,
         ),
+
       ],
       child: MyApp(),
     );

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:numerology/features/auth/data/auth_repository.dart';
 import 'package:numerology/features/profile/data/profile_repository.dart';
 import 'package:numerology/features/profile/logic/user_cubit.dart';
 import 'package:numerology/models/user.dart';
@@ -39,6 +40,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
 
   @override
   void initState() {
+    print(context.read<AuthRepository>().tgUser?.user?.photoUrl);
+    print('--------');
+
     final ProfileRepository profileRepository =
         RepositoryProvider.of<ProfileRepository>(context);
 
@@ -147,9 +151,12 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           const SizedBox(
                             width: 6,
                           ),
-                          const CircleAvatar(
+                           CircleAvatar(
                             radius: 2,
                             backgroundColor: AppColors.lightGrey,
+                            child: Image(
+                              image: NetworkImage(context.read<AuthRepository>().tgUser?.user?.photoUrl ?? ""),
+                            ),
                           ),
                           const SizedBox(
                             width: 6,

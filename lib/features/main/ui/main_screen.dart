@@ -2,6 +2,7 @@ import 'package:expansion_widget/expansion_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
+import 'package:numerology/features/main/data/arkan_repository.dart';
 import 'package:numerology/features/main/ui/widget/ability_name_widget.dart';
 import 'package:numerology/features/main/ui/widget/ability_number_widget.dart';
 import 'package:numerology/features/main/ui/widget/arkan_expansion_widget.dart';
@@ -17,15 +18,9 @@ import 'package:numerology/widgets/custom_paint/matrix.dart';
 import 'package:websafe_svg/websafe_svg.dart';
 import 'dart:math';
 
+import '../../../models/arkan_point.dart';
 import '../../auth/data/auth_repository.dart';
 import '../../home/logic/cubit/home_cubit.dart';
-
-class ArkanPoint {
-  final int value;
-  final String letter;
-
-  ArkanPoint({required this.value, required this.letter});
-}
 
 class MainScreen extends StatefulWidget {
   const MainScreen({super.key});
@@ -35,15 +30,11 @@ class MainScreen extends StatefulWidget {
 }
 
 class _MainScreenState extends State<MainScreen> {
-  List<ArkanPoint> arkanPointList =
-      'A B C D E F G H I J K L T M N O P Q R S F1 F2 G1 G2 I1 I2 H1 H2 R1 R2 L2 L1'
-          .split(" ")
-          .map((letter) =>
-              ArkanPoint(letter: letter, value: Random().nextInt(23)))
-          .toList();
+  late final List arkanPointList;
 
   @override
   void initState() {
+    arkanPointList = context.read<ArkanRepository>().arkanPointList;
     super.initState();
   }
 
@@ -179,34 +170,16 @@ class _MainScreenState extends State<MainScreen> {
             ],
           )),
           separator,
-          ArkanExpansionWidget(
-            title: "Основа личности",
-          ),
-          separator,
-          ArkanExpansionWidget(
-            title: "Предназначения личности",
-          ),
-          separator,
-          ArkanExpansionWidget(
-            title: "Романтические отношения",
-          ),
-          separator,
-          ArkanExpansionWidget(
-            title: "Финансы",
-          ),
-          separator,
-          ArkanExpansionWidget(
-            title: "Отношения с семьей",
-          ),
-          separator,
-          ArkanExpansionWidget(
-            title: "Отношения с окружением",
-          ),
-          separator,
-          ArkanExpansionWidget(
-            title: "Карма прошлой жизни",
-          ),
-          separator,
+          ...context
+              .read<ArkanRepository>()
+              .arkanCategoryList
+              .map((arkanCategory) => Padding(
+                    padding: const EdgeInsets.only(bottom: 16),
+                    child: ArkanExpansionWidget(
+                      title: arkanCategory.name,
+                      letters: arkanCategory.letters,
+                    ),
+                  )),
         ],
       ),
     );
