@@ -14,18 +14,20 @@ class AuthRepository {
   PreferencesService preferencesService;
   UserModel user = UserModel();
   WebAppInitData? tgUser;
+  final TeleWebApp tg = TeleWebApp();
+
 
   BehaviorSubject<AppAuthStateEnum> appState =
   BehaviorSubject.seeded(AppAuthStateEnum.wait);
 
   AuthRepository({required this.authService, required this.userService, required this.preferencesService}) {
     _checkIsAuthorize();
-    user.tgId = tgUser?.user?.id ?? Random().nextInt(10000000);
+    user.tgId = tgUser?.user?.id ?? 666112;
   }
 
   void _checkIsAuthorize() async {
     var res = (await authService
-        .checkUserRegister(tgUser == null ? 767566 : tgUser!.user!.id));
+        .checkUserRegister(tgUser == null ? 666112 : tgUser!.user!.id));
 
     if (res['register']) {
       user = UserModel.fromJson(await userService.getUser());

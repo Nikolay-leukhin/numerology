@@ -16,12 +16,12 @@ class ProfileRepository {
     user = userModel;
   }
 
-  void updateUserData(UserModel userModel) {
+  void updateUserData(UserModel userModel) async {
     user = userModel;
 
     userModelStream.add(LoadingStateEnum.loading);
     try {
-      userService.updateUser(userModel);
+      await userService.updateUser(userModel);
       userModelStream.add(LoadingStateEnum.success);
     }
     catch (e){

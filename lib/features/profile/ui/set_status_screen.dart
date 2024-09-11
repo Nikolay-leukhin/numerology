@@ -1,15 +1,19 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:numerology/utils/Assets.dart';
 import 'package:numerology/utils/fonts.dart';
 import 'package:numerology/widgets/buttons/gradient_button.dart';
 import 'package:websafe_svg/websafe_svg.dart';
 
+import '../../../models/user.dart';
 import '../../../utils/enums.dart';
+import '../../../utils/functions.dart';
 import '../../../widgets/scaffold/custom_scaffold.dart';
 import '../../auth/ui/auth_status.dart';
 import '../../auth/ui/widgets/description_text_widget.dart';
 import '../../auth/ui/widgets/select_box.dart';
+import '../data/profile_repository.dart';
 
 class SetStatusScreen extends StatefulWidget {
   SetStatusScreen({super.key});
@@ -19,15 +23,21 @@ class SetStatusScreen extends StatefulWidget {
 }
 
 class _SetStatusScreenState extends State<SetStatusScreen> {
-  RelationshipStatuses currentStatus = RelationshipStatuses.none;
+  late final UserModel user;
+
+  @override
+  void initState() {
+    user = RepositoryProvider.of<ProfileRepository>(context).user!;
+    super.initState();
+  }
 
   checkStatus(RelationshipStatuses status) {
-    return currentStatus == status;
+    return user.status == status;
   }
 
   selectStatus(RelationshipStatuses newStatus) {
     setState(() {
-      currentStatus = newStatus;
+      user.status = newStatus;
     });
   }
 
@@ -109,13 +119,22 @@ class _SetStatusScreenState extends State<SetStatusScreen> {
                   onClick: () {
                     selectStatus(RelationshipStatuses.engaged);
                   }),
-
               const SizedBox(
                 height: 25,
               ),
-              GradientButton(onTap: () {}, text: "Сохранить", height: 48, fontSize: 16,),
+              GradientButton(
+                onTap: () {
 
-              const SizedBox(height: 100,)
+                  RepositoryProvider.of<ProfileRepository>(context)
+                      .updateUserData(user);
+                },
+                text: "Сохранить",
+                height: 48,
+                fontSize: 16,
+              ),
+              const SizedBox(
+                height: 100,
+              )
             ],
           ),
         ));

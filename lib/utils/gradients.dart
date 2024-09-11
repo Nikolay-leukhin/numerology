@@ -1,4 +1,4 @@
-import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 
 class AppGradients {
   static const LinearGradient purpleToBlue = LinearGradient(
@@ -10,6 +10,11 @@ class AppGradients {
     begin: Alignment.bottomRight,
     end: Alignment.topLeft,
     colors: [Color(0xFF1D1956), Color(0xFF48438A)],
+  );
+  static const LinearGradient unactive = LinearGradient(
+    begin: Alignment.bottomRight,
+    end: Alignment.topLeft,
+    colors: [Color(0xFF423F73), Color(0xFF48438A)],
   );
   static const LinearGradient purpleToPink = LinearGradient(
     begin: Alignment.bottomCenter,

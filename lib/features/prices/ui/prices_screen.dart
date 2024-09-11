@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gradient_borders/box_borders/gradient_box_border.dart';
+import 'package:numerology/features/prices/bloc/subs_cubit.dart';
 import 'package:numerology/features/prices/data/prices_repository.dart';
 import 'package:numerology/models/subscription.dart';
 import 'package:numerology/utils/utils.dart';
@@ -20,40 +21,67 @@ class PricesScreen extends StatefulWidget {
 }
 
 class _PricesScreenState extends State<PricesScreen> {
+
+  @override
+  void initState() {
+    context.read<SubsCubit>().loadSubs();
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return CustomScaffold(
-        body: SingleChildScrollView(
-      child: Column(
-        children: [
-          const SizedBox(height: 6),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        body: BlocBuilder<SubsCubit, SubsState>(builder: (context, state) {
+      if (state is SubsSuccess) {
+        return SingleChildScrollView(
+          child: Column(
             children: [
-              IconButton(
-                  onPressed: () {
-                    Navigator.pop(context);
-                  },
-                  icon: const Icon(
-                    Icons.arrow_back,
-                    size: 28,
-                    color: AppColors.white,
-                  )),
-              WebsafeSvg.asset(
-                Assets.svg('tariff_logo.svg'),
+              const SizedBox(height: 6),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  IconButton(
+                      onPressed: () {
+                        Navigator.pop(context);
+                      },
+                      icon: const Icon(
+                        Icons.arrow_back,
+                        size: 28,
+                        color: AppColors.white,
+                      )),
+                  WebsafeSvg.asset(
+                    Assets.svg('tariff_logo.svg'),
+                  ),
+                  const SizedBox(
+                    width: 40,
+                  )
+                ],
               ),
+              ...context
+                  .read<PricesRepository>()
+                  .subsList
+                  .map((e) => PriceWidget(
+                        sub: e,
+                      )),
               const SizedBox(
-                width: 40,
+                height: 150,
               )
             ],
           ),
-          ...context.read<PricesRepository>().subsList.map((e) => PriceWidget(
-                sub: e,
-              )),
-          const SizedBox(height: 150,)
-        ],
-      ),
-    ));
+        );
+      } else if (state is SubsLoading) {
+        return const Center(
+          child: CircularProgressIndicator(),
+        );
+      }
+
+      return Center(
+        child: Text(
+          "Произошла ошибка... повторите позднее",
+          style: AppFonts.f24w700.copyWith(color: AppColors.white),
+        ),
+      );
+    }));
   }
 }
 

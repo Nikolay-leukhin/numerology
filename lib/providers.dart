@@ -13,6 +13,7 @@ import 'features/app/data/app_repository.dart';
 import 'features/auth/logic/auth_cubit.dart';
 import 'features/home/data/home_repository.dart';
 import 'features/home/logic/cubit/home_cubit.dart';
+import 'features/prices/bloc/subs_cubit.dart';
 
 final PreferencesService prefs = PreferencesService();
 final ApiService api = ApiService(preferencesService: prefs);
@@ -25,13 +26,14 @@ class MyRepositoryProvider extends StatelessWidget {
     return MultiRepositoryProvider(providers: [
       RepositoryProvider(create: (context) => AppRepository()),
       RepositoryProvider(create: (context) => HomeRepository()),
-      RepositoryProvider(create: (context) => PricesRepository()),
+      RepositoryProvider(create: (context) => PricesRepository(api: api.subs)),
       RepositoryProvider(
           create: (context) => AuthRepository(
               authService: api.auth,
               userService: api.user,
               preferencesService: prefs)),
-      RepositoryProvider(create: (context) => ProfileRepository(userService: api.user)),
+      RepositoryProvider(
+          create: (context) => ProfileRepository(userService: api.user)),
     ], child: MyBlocProvider());
   }
 }
@@ -45,6 +47,8 @@ class MyBlocProvider extends StatelessWidget {
         RepositoryProvider.of<AuthRepository>(context);
     ProfileRepository profileRepository =
         RepositoryProvider.of<ProfileRepository>(context);
+    PricesRepository pricesRepository =
+        RepositoryProvider.of<PricesRepository>(context);
 
     return MultiBlocProvider(
       providers: [
@@ -62,6 +66,10 @@ class MyBlocProvider extends StatelessWidget {
         ),
         BlocProvider(
           create: (context) => AppCubit(authRepository, profileRepository),
+          lazy: false,
+        ),
+        BlocProvider(
+          create: (context) => SubsCubit(pricesRepository),
           lazy: false,
         ),
       ],

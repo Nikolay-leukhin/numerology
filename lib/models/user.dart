@@ -11,7 +11,7 @@ class UserModel {
 
   UserModel(
       {this.tgId = 0,
-      this.name = ' ',
+      this.name = '',
       this.id,
       this.birthday,
       this.gender = Genders.male,

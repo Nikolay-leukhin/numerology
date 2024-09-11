@@ -6,8 +6,9 @@ class MyFilledButton extends StatelessWidget {
   final String text;
   final double width;
   final double height;
+  final bool active;
 
-  const MyFilledButton({super.key, required this.onTap, required this.text, required this.width, required this.height});
+  const MyFilledButton({super.key, required this.onTap, required this.text, required this.width, required this.height, this.active = true});
 
   @override
   Widget build(BuildContext context) {
@@ -22,11 +23,11 @@ class MyFilledButton extends StatelessWidget {
         clipBehavior: Clip.hardEdge,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(16),
-          gradient: AppGradients.purpleToBlue
+          gradient: active ? AppGradients.purpleToBlue : AppGradients.unactive
         ),
         child: Text(
           text,
-          style: AppFonts.f16w600.copyWith(color: AppColors.white),
+          style: AppFonts.f16w600.copyWith(color:active ? AppColors.white : AppColors.unActiveColorText),
         ),
       ),
     );

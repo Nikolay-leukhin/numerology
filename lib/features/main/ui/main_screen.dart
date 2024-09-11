@@ -1,5 +1,7 @@
 import 'package:expansion_widget/expansion_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:intl/intl.dart';
 import 'package:numerology/features/main/ui/widget/ability_name_widget.dart';
 import 'package:numerology/features/main/ui/widget/ability_number_widget.dart';
 import 'package:numerology/features/main/ui/widget/arkan_expansion_widget.dart';
@@ -14,6 +16,9 @@ import 'package:numerology/widgets/containers/blue_gradient_container.dart';
 import 'package:numerology/widgets/custom_paint/matrix.dart';
 import 'package:websafe_svg/websafe_svg.dart';
 import 'dart:math';
+
+import '../../auth/data/auth_repository.dart';
+import '../../home/logic/cubit/home_cubit.dart';
 
 class ArkanPoint {
   final int value;
@@ -106,11 +111,9 @@ class _MainScreenState extends State<MainScreen> {
                   ),
                 ),
                 //  generation of value of arkan letters
-                ...arkanPointList
-                    .map((arkan) => ArkanPositionWidget(
-                        arkan: arkan,
-                        containerSize:
-                            Size(size.width * 0.87, size.width * 0.87)))
+                ...arkanPointList.map((arkan) => ArkanPositionWidget(
+                    arkan: arkan,
+                    containerSize: Size(size.width * 0.87, size.width * 0.87)))
 
                 //   --------
               ])),
@@ -124,7 +127,8 @@ class _MainScreenState extends State<MainScreen> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    "22.07.2004",
+                    DateFormat("dd.MM.yyyy").format(
+                        context.read<AuthRepository>().user.birthday!), // TODO
                     style: AppFonts.f20w700.copyWith(color: AppColors.white),
                   ),
                   Text(
@@ -135,7 +139,9 @@ class _MainScreenState extends State<MainScreen> {
               ),
               InkWell(
                 borderRadius: BorderRadius.circular(500),
-                onTap: () {},
+                onTap: () {
+                  context.read<HomeCubit>().changePageIndexTo(1);
+                },
                 child: Ink(
                   decoration: const BoxDecoration(
                       shape: BoxShape.circle, color: AppColors.darkBlue),

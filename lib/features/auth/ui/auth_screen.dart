@@ -58,6 +58,10 @@ class _AuthScreenState extends State<AuthScreen> {
     setState(() {});
   }
 
+  validateName() {
+    return RepositoryProvider.of<AuthRepository>(context).user.name != '';
+  }
+
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.sizeOf(context);
@@ -132,6 +136,9 @@ class _AuthScreenState extends State<AuthScreen> {
             AuthEnterNamePage(
               onChange: (newName) {
                 authRepository.user.name = newName;
+                setState(() {
+
+                });
               },
             ),
             const AuthBirthdayPage(),
@@ -146,8 +153,11 @@ class _AuthScreenState extends State<AuthScreen> {
           children: [
             MyFilledButton(
               onTap: () {
-                nextPage();
+                if (validateName()){
+                  nextPage();
+                }
               },
+              active: validateName(),
               text: "Дальше",
               width: (size.width - 40),
               height: 48,

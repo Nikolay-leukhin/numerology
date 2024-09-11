@@ -16,7 +16,7 @@ class AuthStatusPage extends StatefulWidget {
 }
 
 class _AuthBirthdayPageState extends State<AuthStatusPage> {
-  RelationshipStatuses currentStatus = RelationshipStatuses.none;
+  RelationshipStatuses currentStatus = RelationshipStatuses.lonely;
 
   checkStatus(RelationshipStatuses status) {
     return currentStatus == status;
