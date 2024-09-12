@@ -1,6 +1,5 @@
 import 'dart:developer';
 
-import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:dio/dio.dart';
 import 'package:numerology/models/user.dart';
 import 'package:numerology/services/local/preferences_service.dart';
@@ -19,7 +18,7 @@ const Map<String, dynamic> _authHeaders = {
 };
 
 BaseOptions dioOptions = BaseOptions(
-  baseUrl: dotenv.get('BASE_SERVER_URL'),
+  baseUrl: "http://109.172.84.27:5001/noomeo/api/",
   headers: _authHeaders,
   connectTimeout: const Duration(seconds: 15),
   receiveTimeout: const Duration(seconds: 20),
