@@ -1,4 +1,6 @@
 import 'dart:developer';
+import 'package:dio/browser.dart';
+
 
 import 'package:dio/dio.dart';
 import 'package:numerology/models/user.dart';
@@ -45,6 +47,7 @@ class ApiService {
 
   void initialServices() async {
     token = '';
+    dio.httpClientAdapter = BrowserHttpClientAdapter();
 
     auth =
         AuthService(dio_: dio, preferences: preferencesService, token: token);
