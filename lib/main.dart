@@ -9,7 +9,5 @@ Future<void> main() async{
     TeleWebApp().expand();
   }
 
-  await dotenv.load(fileName: ".env");
-
   runApp(MyRepositoryProvider());
 }

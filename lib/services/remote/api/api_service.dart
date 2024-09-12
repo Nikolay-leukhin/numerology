@@ -21,7 +21,7 @@ const Map<String, dynamic> _authHeaders = {
 };
 
 BaseOptions dioOptions = BaseOptions(
-  baseUrl: dotenv.env['BASE_URL']!,
+  baseUrl: "http://109.172.84.27:5001/noomeo/api/",
   headers: _authHeaders,
   connectTimeout: const Duration(seconds: 15),
   receiveTimeout: const Duration(seconds: 20),
