@@ -16,7 +16,8 @@ part 'auth.dart';
 const Map<String, dynamic> _authHeaders = {
   'Content-Type': 'application/json',
   'Access-Control-Allow-Origin': '*',
-  'Access-Control-Allow-Headers': 'Content-Type, Authorization, Access-Control-Allow-Origin'
+  'Access-Control-Allow-Headers': 'Content-Type, Authorization',
+  'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS'
 };
 
 BaseOptions dioOptions = BaseOptions(
@@ -46,10 +47,14 @@ class ApiService {
   void initialServices() async {
     token = '';
 
-    auth = AuthService(dio_: dio, preferences: preferencesService, token: token);
-    user = UserService(dio_: dio, preferences: preferencesService, token: token);
-    subs = SubsService(dio_: dio, preferences: preferencesService, token: token);
-    arkan = ArkanService(dio_: dio, preferences: preferencesService, token: token);
+    auth =
+        AuthService(dio_: dio, preferences: preferencesService, token: token);
+    user =
+        UserService(dio_: dio, preferences: preferencesService, token: token);
+    subs =
+        SubsService(dio_: dio, preferences: preferencesService, token: token);
+    arkan =
+        ArkanService(dio_: dio, preferences: preferencesService, token: token);
 
     auth.refreshToken(token);
   }
