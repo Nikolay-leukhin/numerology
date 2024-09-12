@@ -15,7 +15,7 @@ part 'auth.dart';
 
 const Map<String, dynamic> _authHeaders = {
   'Content-Type': 'application/json',
-  'Access-Control-Allow-Credentials': 'true'
+  'Access-Control-Allow-Credentials': 'http://109.172.84.27:5001'
 };
 
 BaseOptions dioOptions = BaseOptions(
