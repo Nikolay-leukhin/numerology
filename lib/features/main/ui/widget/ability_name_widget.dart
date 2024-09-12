@@ -3,6 +3,7 @@ import 'package:numerology/features/main/ui/widget/ability_number_widget.dart';
 import 'package:numerology/features/main/ui/widget/arkan_expansion_widget.dart';
 import 'package:numerology/models/arkan_category.dart';
 import 'package:numerology/models/arkan_point.dart';
+import 'package:numerology/utils/constants.dart';
 import 'package:numerology/utils/utils.dart';
 
 class AbilityNameWidget extends StatelessWidget {
@@ -48,14 +49,14 @@ class AbilityNameWidget extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.center,
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
-                          const AbilityNumberWidget(
-                              number: 12, color: Colors.yellow),
+                           AbilityNumberWidget(
+                              number: arkan.value, color: colorList[arkan.value]),
                           const SizedBox(
                             width: 12,
                           ),
                           Flexible(
                             child: Text(
-                              "Предназначения личности",
+                              arkan.description,
                               style: AppFonts.f24w700.copyWith(
                                   color: AppColors.white, height: 1),
                             ),
@@ -85,9 +86,7 @@ class AbilityNameWidget extends StatelessWidget {
                       AppFonts.f20w700.copyWith(color: AppColors.white),
                     ),
                     Text(
-                      "Человек с 12 арканом обычно переживает сложные жизненные ситуации, наполненные испытаниями и жертвами. Его уникальный взгляд на мир часто не понимают окружающие. Однако он обладает способностью глубоко понимать других и всегда готов прийти на помощь. Это человек, который готов на жертвы ради своей цели или из сострадания. Он также обладает творческим даром и может осуществить себя в различных областях искусства. Но благополучие такого человека зависит от того, находится ли его энергия в положительном или отрицательном состоянии."
-                          "В положительном состоянии человек с 12 арканом обладает уникальным взглядом на мир, который иногда кажется другим, будто он не от мира сего. Его рассуждения и мировоззрение сложно понять, но он часто замечается за советами. Он также очень сострадателен и милосерден, всегда готовый п" *
-                          5,
+                          arkans[arkan.value]!,
                       style:
                       AppFonts.f16w400.copyWith(color: AppColors.white),
                     ),
@@ -112,9 +111,13 @@ class AbilityNameWidget extends StatelessWidget {
             const SizedBox(
               width: 12,
             ),
-            Text(
-              "Кто я?",
-              style: AppFonts.f20w700.copyWith(color: AppColors.white),
+            SizedBox(
+              width: size.width * 0.55,
+              child: Text(
+                arkan.description,
+                overflow: TextOverflow.ellipsis,
+                style: AppFonts.f20w700.copyWith(color: AppColors.white),
+              ),
             ),
             const Spacer(),
             InkWell(

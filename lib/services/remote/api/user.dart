@@ -29,7 +29,6 @@ class UserService with ApiHandler {
   }
 
   Future<dynamic> updateUser(UserModel user) async {
-    print(user.toJson());
     final res = await dio.post(ApiEndpoints.updateUser, data: user.toJson());
 
     return res;

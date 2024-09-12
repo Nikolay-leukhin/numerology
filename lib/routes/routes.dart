@@ -9,6 +9,7 @@ import 'package:numerology/routes/route_names.dart';
 import 'package:numerology/widgets/scaffold/custom_scaffold.dart';
 
 import '../features/auth/ui/auth_status.dart';
+import '../features/profile/ui/set_birthday.dart';
 import '../features/profile/ui/set_status_screen.dart';
 
 class AppRoutes {
@@ -29,6 +30,8 @@ class AppRoutes {
         return MaterialPageRoute(builder: (ctx) => const PricesScreen());
       case RouteNames.profileRelationship:
         return MaterialPageRoute(builder: (ctx) => SetStatusScreen());
+      case RouteNames.profileTime:
+        return MaterialPageRoute(builder: (ctx) => SetBirthdayScreen());
       default:
         return MaterialPageRoute(builder: (ctx) => const AppStateWidget());
     }

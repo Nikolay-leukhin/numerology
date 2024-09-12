@@ -127,6 +127,7 @@ class _SetStatusScreenState extends State<SetStatusScreen> {
 
                   RepositoryProvider.of<ProfileRepository>(context)
                       .updateUserData(user);
+                  Navigator.pop(context);
                 },
                 text: "Сохранить",
                 height: 48,

@@ -8,12 +8,14 @@ class UserModel {
   Genders gender;
   RelationshipStatuses status;
   SubscriptionType subscriptionType;
+  List<String>? subList;
 
   UserModel(
       {this.tgId = 0,
       this.name = '',
       this.id,
       this.birthday,
+      this.subList,
       this.gender = Genders.male,
       this.status = RelationshipStatuses.none,
       this.subscriptionType = SubscriptionType.none}) {
@@ -24,7 +26,8 @@ class UserModel {
     final Map<String, dynamic> data = <String, dynamic>{};
     data['tgId'] = tgId;
     data['name'] = name;
-    data['birthdayDateTime'] = '${birthday.toString().split(' ').join('T')}Z';
+    data['birthdayDateTime'] =
+        '${birthday.toString().split(' ').join('T')}Z'.replaceAll("ZZ", "Z");
     data['gender'] = gender.index + 1;
     data['status'] = status.index + 1;
     data['subscriptionType'] = subscriptionType.index + 1;
@@ -38,10 +41,12 @@ class UserModel {
     return UserModel(
         tgId: json['tgId'],
         id: json['id'],
+        subList: json['subscriptions'] ?? ["Не активен"],
         name: json['name'],
         birthday: json["birthdayDateTime"] == null
             ? null
-            : DateTime.tryParse(json["birthdayDateTime"].toString().split('T').join(' ')),
+            : DateTime.tryParse(
+                json["birthdayDateTime"].toString().split('T').join(' ')),
         gender: Genders.values[json['gender'] - 1],
         status: RelationshipStatuses.values[json['status'] - 1],
         subscriptionType:
