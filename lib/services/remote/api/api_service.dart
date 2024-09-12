@@ -3,6 +3,7 @@ import 'package:dio/browser.dart';
 
 
 import 'package:dio/dio.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:numerology/models/user.dart';
 import 'package:numerology/services/local/preferences_service.dart';
 import 'package:numerology/services/remote/api/arkan.dart';
@@ -17,12 +18,10 @@ part 'auth.dart';
 
 const Map<String, dynamic> _authHeaders = {
   'Content-Type': 'application/json',
-  'Access-Control-Allow-Headers': 'Content-Type, Authorization',
-  'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS'
 };
 
 BaseOptions dioOptions = BaseOptions(
-  baseUrl: "http://109.172.84.27:5001/noomeo/api/",
+  baseUrl: dotenv.env['BASE_URL']!,
   headers: _authHeaders,
   connectTimeout: const Duration(seconds: 15),
   receiveTimeout: const Duration(seconds: 20),
@@ -47,7 +46,6 @@ class ApiService {
 
   void initialServices() async {
     token = '';
-    dio.httpClientAdapter = BrowserHttpClientAdapter();
 
     auth =
         AuthService(dio_: dio, preferences: preferencesService, token: token);

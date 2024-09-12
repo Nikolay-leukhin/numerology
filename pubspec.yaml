@@ -28,6 +28,7 @@ dependencies:
   shared_preferences: ^2.3.2
   pretty_dio_logger: ^1.4.0
   intl: any
+  flutter_dotenv: ^5.1.0
 
 dev_dependencies:
   flutter_test:
@@ -42,5 +43,6 @@ flutter:
     - assets/images/
     - assets/
     - assets/svg/
+    - .env
 
 
