@@ -1,9 +1,7 @@
 import 'dart:developer';
 import 'package:dio/browser.dart';
 
-
 import 'package:dio/dio.dart';
-import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:numerology/models/user.dart';
 import 'package:numerology/services/local/preferences_service.dart';
 import 'package:numerology/services/remote/api/arkan.dart';
@@ -18,6 +16,7 @@ part 'auth.dart';
 
 const Map<String, dynamic> _authHeaders = {
   'Content-Type': 'application/json',
+  'Content-Security-Policy': "upgrade-insecure-requests"
 };
 
 BaseOptions dioOptions = BaseOptions(
